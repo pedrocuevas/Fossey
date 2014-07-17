@@ -40,6 +40,8 @@ CREATE TABLE propietarios (
     genero int NOT NULL, -- O Femenino 1 Masculino
     direccion varchar(255) NOT NULL,
     comuna_fk int NOT NULL REFERENCES comunas(pk) ON UPDATE CASCADE ON DELETE CASCADE,
+    telefono varchar(255) NOT NULL,
+    email varchar(255) NOT NULL,
     UNIQUE (rut),
     PRIMARY KEY (pk)
 );
@@ -112,6 +114,8 @@ CREATE TABLE profesionales (
     genero int NOT NULL, -- O Femenino 1 Masculino
     direccion varchar(255) NOT NULL,
     comuna_fk int NOT NULL REFERENCES comunas(pk) ON UPDATE CASCADE ON DELETE CASCADE,
+    telefono varchar(255),
+    email varchar(255),
     titulo_profesional varchar(255) NOT NULL,
     institucion varchar(255) NOT NULL,
     descripcion text,
