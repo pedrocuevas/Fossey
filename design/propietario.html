@@ -268,7 +268,7 @@
                             <a href="#"><i class="fa fa-search fa-fw"></i> Buscar Registro<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="propietario.html">Por Propietario</a>
+                                    <a href="flot.html">Por Propietario</a>
                                 </li>
                                 <li>
                                     <a href="morris.html">Por Mascota</a>
@@ -327,143 +327,29 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Ingresar Nuevo Registro</h1>
+                    <h1 class="page-header">Buscar Registro por Propietario</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-4">
 
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-user fa-fw"></i> Datos del Propietario
-                            <div class="pull-right">
-                                
+      
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Ingrese Rut del Propietario"  pattern="[0-9]{8}" maxlength="8">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
                             </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="row">
-                               
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-4">
-								<form role="form">
-                                        <div class="form-group">
-                                            <label>Nombre:</label>
-                                            <input class="form-control" placeholder="Ingrese el nombre aquí" required>
-											<p class="help-block">Ingrese el nombre completo.</p>
-                                        </div>
-										<div class="form-group">
-                                            <label>RUT:</label>
-                                            <input class="form-control" placeholder="12345678" pattern="[0-9]{8}" maxlength="8" required>
-											<p class="help-block">Ingrese el rut sin dígito verificador</p>
-                                        </div>
-										<div class="form-group">
-                                            <label>Correo:</label>
-                                            <input class="form-control" type="email" placeholder="email@dominio.com" required>
-											
-                                        </div>
-                                </div>
-								
-								<div class="col-lg-4">
-								
-								<div class="form-group">
-                                            <label>Dirección:</label>
-                                            <input class="form-control" placeholder="Ingrese el nombre aquí">
-											<p class="help-block">Ingrese el nombre completo.</p>
-                                        </div>
-										<div class="form-group">
-                                            <label>Teléfono:</label>
-                                            <input class="form-control" placeholder="21234567" pattern="[2][0-9]{7}" maxlength="8">
-											<p class="help-block">Ingrese su número de casa (8 dígitos)</p>
-										
-                                        </div>
-										<div class="form-group">
-                                            <label>Celular:</label>
-                                            <input class="form-control" placeholder="12345678" pattern="[0-9]{8}" maxlength="8">
-											
-                                        </div>
-								
-								
-								</div>
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-star fa-fw"></i> Datos de la Mascota
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label>Nombre:</label>
-                                            <input class="form-control" placeholder="Ingrese el nombre aquí">
-											<p class="help-block">Ingrese el nombre de la mascota.</p>
-                                        </div>
-										<div class="form-group">
-                                            <label>Especie:</label>
-                                            <select class="form-control">
-                                                <option>Perro</option>
-                                                <option>Gato</option>
-                                                <option>Conejo</option>
-                                                <option>Hamster</option>
-                                                <option>Otros</option>
-                                            </select>
-                                        </div>
-										<div class="form-group">
-                                            <label>Raza:</label>
-                                            <select class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-										
-										
-										
-									
-                                </div>
-								
-								<div class="col-lg-4">
-								
-							<div class="form-group">
-                                            <label>Sexo:</label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>Masculino
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">Femenino
-                                            </label>
-                                    
-                                        </div>
-										<div class="form-group">
-                                            <label>Color:</label>
-                                            <input class="form-control" type="color">
-										
-                                        </div>
-										<div class="form-group">
-                                            <label>Fecha de Nacimiento:</label>
-                                            <input class="form-control" type="date" placeholder="12345678">
-											
-                                        </div>
-								
-								
-								</div>
-                        </div>
-                        <!-- /.panel-body -->
-						
-                    </div>
-					<p><button type="Submit" class="btn btn-primary btn-lg">Guardar Registro</button></p>
-					</form>
+                            <!-- /input-group -->
+                    
+
+      
+          
+
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-8 -->
