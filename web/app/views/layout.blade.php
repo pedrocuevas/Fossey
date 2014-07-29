@@ -70,7 +70,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="registro"><i class="fa fa-pencil fa-fw"></i> Nuevo Registro</a>
+                            <a href="{{ URL::route('registro')}}"><i class="fa fa-pencil fa-fw"></i> Nuevo Registro</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-search fa-fw"></i> Buscar Registro<span class="fa arrow"></span></a>
