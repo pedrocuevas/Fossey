@@ -19,11 +19,11 @@ Ingresar Nuevo Registro
                                
                                 <!-- /.col-lg-4 (nested) -->
                 <div class="col-lg-4">
-				              <form role="form">
+	{{ Form::open(array('url' => '/ingreso')) }}
                                        <div class="form-group">
                                             <label>RUT:</label>
-                                            <input class="form-control" placeholder="12345678" pattern="[0-9]{8}" maxlength="8" required>
-											                      <p class="help-block">Ingrese el rut sin dígito verificador</p>
+                                            <input name="rut" class="form-control" placeholder="12345678" pattern="[0-9]{8}" maxlength="8" required>
+					      <p class="help-block">Ingrese el rut sin dígito verificador</p>
                                         </div>
                                          
                                     	<div class="form-group">
@@ -44,8 +44,8 @@ Ingresar Nuevo Registro
 				        <div class="col-lg-4">
                                         <div class="form-group">
                                             <label>Nombres:</label>
-                                            <input class="form-control" placeholder="Ingrese nombres aquí" required>
-											                      <p class="help-block">Ej: Juan Pablo</p>
+                                            <input name="nombres" class="form-control" placeholder="Ingrese nombres aquí" required>
+					       <p class="help-block">Ej: Juan Pablo</p>
                                          </div>
 								
 					
@@ -69,9 +69,29 @@ Ingresar Nuevo Registro
                                  
                                     <div class="form-group">
                                             <label>Apellidos:</label>
-                                            <input class="form-control" placeholder="Ingrese el nombre aquí">
+                                            <input name="apellidos" class="form-control" placeholder="Ingrese el nombre aquí">
 											                      <p class="help-block">Ej: Pérez Cotapos</p>
                                     </div>
+                   
+
+                   
+                   <div class="form-group">
+                                            <label>Fecha de Nacimiento:</label>
+                                            <input name="fecha_nac" class="form-control" type="date" placeholder="12345678">
+                                            <p class="help-block">Opcional.</p></br>
+											
+                    </div>
+                       
+                   <div class="form-group">
+                                       <label>Género:</label>
+                                         <label class="radio-inline">
+                                          <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>Masculino
+                                         </label>
+                                         <label class="radio-inline">
+                                           <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">Femenino
+                                         </label>
+                                    
+                   </div>
                                     
                                 
 
@@ -98,8 +118,8 @@ Ingresar Nuevo Registro
 											                   <p class="help-block">Ingrese el nombre de la mascota.</p>
                               </div>
 					
-				                <div class="form-group">
-                                         <label>Sexo:</label>
+	             <div class="form-group">
+                                       <label>Sexo:</label>
                                          <label class="radio-inline">
                                           <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>Masculino
                                          </label>
@@ -107,7 +127,9 @@ Ingresar Nuevo Registro
                                            <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">Femenino
                                          </label>
                                     
-                       </div>	
+                       </div>
+                          
+                          
 										
 										
 										
@@ -160,12 +182,13 @@ Ingresar Nuevo Registro
                         <!-- /.panel-body -->
 						
                     </div>
-<div class="panel-body">
-        <div class="col-lg-12">         
-					<p><button type="Submit" class="btn btn-primary btn-lg">Guardar Registro</button></p>
-        </div> 
+     <div class="panel-body">
+          <div class="col-lg-12">         
+	    <p><button type="Submit" class="btn btn-primary btn-lg">Guardar Registro</button></p>
+          </div> 
  </div>        
-					</form>
+
+{{ Form::close(); }}
 
          
 

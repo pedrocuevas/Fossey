@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', function()
 {
 	return View::make('layout');
@@ -20,3 +22,6 @@ Route::get('/registro', array('as' => 'registro', function()
 {
     return View::make('registro');
 }));
+
+
+Route::post('/ingreso', array('uses' => 'IngresoController@crear'));
