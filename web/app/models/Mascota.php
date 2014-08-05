@@ -1,10 +1,12 @@
 <?php
 
-class Propietario extends Eloquent{
+class Mascota extends Eloquent{
     
  public $timestamps = false; 
-    
+ 
 
+    
+    
 }
 
 
