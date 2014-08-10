@@ -18,6 +18,9 @@
 
     <!-- SB Admin CSS - Include with every page -->
     {{ HTML::style('css/sb-admin.css') }}
+    {{ HTML::script('js/jquery-1.10.2.js') }}
+    
+     @yield('cabecera')
 
 </head>
 
@@ -122,7 +125,7 @@
      </div>            
 
     <!-- Core Scripts - Include with every page -->
-  {{ HTML::script('js/jquery-1.10.2.js') }}
+  
   {{ HTML::script('js/bootstrap.min.js') }}
   {{ HTML::script('js/plugins/metisMenu/jquery.metisMenu.js') }}
 

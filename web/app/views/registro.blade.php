@@ -4,8 +4,21 @@
 Ingresar Nuevo Registro
 @endsection
 
+@section('cabecera')
+{{ HTML::script('js/jquery.Rut.js') }}
+@endsection
+
 @section('contenido')
 
+<script>
+    $(document).ready(function() {
+        $('#rut').Rut({
+            on_error: function() {
+                alert('Rut incorrecto');
+            },
+            format_on: 'keyup'});
+    });
+</script>
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -22,8 +35,9 @@ Ingresar Nuevo Registro
                 {{ Form::open(array('url' => '/ingreso')) }}
                 <div class="form-group">
                     <label>RUT:</label>
-                    <input name="rut" class="form-control" placeholder="12345678" pattern="[0-9]{8}" maxlength="8" required>
-                    <p class="help-block">Ingrese el rut sin dígito verificador</p>
+                    {{ HTML::script('js/jquery.Rut.js') }}
+                    <input name="rut" id="rut" class="form-control" placeholder="12345678k"  maxlength="13" required>
+                    <p class="help-block">Ingrese el rut del propietario</p>
                 </div>
 
                 <div class="form-group">
@@ -85,10 +99,10 @@ Ingresar Nuevo Registro
                 <div class="form-group">
                     <label>Género:</label>
                     <label class="radio-inline">
-                        <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>Masculino
+                        <input type="radio" name="genero" id="optionsRadiosInline1" value="1" checked>Masculino
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">Femenino
+                        <input type="radio" name="genero" id="optionsRadiosInline2" value="2">Femenino
                     </label>
 
                 </div>
@@ -121,10 +135,10 @@ Ingresar Nuevo Registro
                 <div class="form-group">
                     <label>Sexo:</label>
                     <label class="radio-inline">
-                        <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="1" checked>Masculino
+                        <input type="radio" name="sexo" id="optionsRadiosInline1" value="1" checked>Masculino
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="2">Femenino
+                        <input type="radio" name="sexo" id="optionsRadiosInline2" value="2">Femenino
                     </label>
 
                 </div>

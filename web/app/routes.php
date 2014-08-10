@@ -24,4 +24,4 @@ Route::get('/registro', array('as' => 'registro', function()
 }));
 
 
-Route::post('/ingreso', array('uses' => 'IngresoController@crear'));
+Route::post('/ingreso', array('uses' => 'IngresoController@crearRegistro'));
