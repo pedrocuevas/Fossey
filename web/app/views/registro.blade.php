@@ -35,7 +35,6 @@ Ingresar Nuevo Registro
                 {{ Form::open(array('url' => '/ingreso')) }}
                 <div class="form-group">
                     <label>RUT:</label>
-                    {{ HTML::script('js/jquery.Rut.js') }}
                     <input name="rut" id="rut" class="form-control" placeholder="12345678k"  maxlength="13" required>
                     <p class="help-block">Ingrese el rut del propietario</p>
                 </div>
