@@ -23,6 +23,15 @@ Route::get('/registro', array('as' => 'registro', function()
     return View::make('registro');
 }));
 
+Route::get('/buscarPropietario', array('as' => 'buscarPropietario', function()
+{
+    return View::make('buscarPropietario');
+}));
+
+Route::get('/buscarFolio', array('as' => 'buscarFolio', function()
+{
+    return View::make('buscarFolio');
+}));
 
 Route::post('/ingreso', array('uses' => 'IngresoController@crearRegistro'));
 

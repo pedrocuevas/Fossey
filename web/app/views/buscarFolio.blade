@@ -1,0 +1,23 @@
+@extends('layout')
+
+@section('titulo')
+Buscar Registros por Propietario
+@endsection
+
+@section('cabecera')
+@endsection
+
+@section('contenido')
+
+{{ Form::open(array('url' => '/resultadoBusqueda')) }}
+<div class="input-group custom-search-form">
+    <input name="folio" id="folio" type="text" class="form-control" placeholder="Ingrese el N° de folio" >
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="button">
+            <i class="fa fa-search"></i>
+        </button>
+    </span>
+</div>
+{{ Form::close(); }}
+
+@endsection

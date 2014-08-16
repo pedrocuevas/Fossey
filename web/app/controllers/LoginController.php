@@ -15,10 +15,10 @@ class LoginController extends BaseController {
         $valida = Usuario::find(1);
         
         if(($valida->usuario == $user) && ($valida->pass == $password)){
-          echo "Contraseña Correcta";   
+          return View::make('registro');
          }
          else{
-          echo "Contraseña Inválida";   
+          return View::make('login');  
          }
         
        
