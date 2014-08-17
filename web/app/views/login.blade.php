@@ -34,10 +34,10 @@
                              {{ Form::open(array('url' => '/login')) }}
                                 <fieldset>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Nombre de Usuario" name="usuario" type="text" autofocus>
+                                        <input class="form-control" placeholder="Nombre de Usuario" name="username" type="text" autofocus>
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Contraseña" name="contraseña" type="password" value="">
+                                        <input class="form-control" placeholder="Contraseña" name="password" type="password" value="">
                                     </div>
                                     <div class="checkbox">
                                         <label>

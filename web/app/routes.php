@@ -18,19 +18,25 @@ Route::get('/', function()
 	return View::make('login');
 });
 
-Route::get('/registro', array('as' => 'registro', function()
+Route::get('/registro', array('before' => 'auth','as' => 'registro', function()
 {
     return View::make('registro');
 }));
 
-Route::get('/buscarPropietario', array('as' => 'buscarPropietario', function()
+Route::get('/buscarPropietario', array('before' => 'auth','as' => 'buscarPropietario', function()
 {
     return View::make('buscarPropietario');
 }));
 
-Route::get('/buscarFolio', array('as' => 'buscarFolio', function()
+Route::get('/buscarFolio', array('before' => 'auth','as' => 'buscarFolio', function()
 {
     return View::make('buscarFolio');
+}));
+
+Route::get('/logout', array('as' => 'logout', function()
+{
+    Auth::logout();
+    return Redirect::to('/');
 }));
 
 Route::post('/ingreso', array('uses' => 'IngresoController@crearRegistro'));

@@ -5,25 +5,26 @@ class LoginController extends BaseController {
     
     public function validaLogin() {
         
-        $data = Input::all();
+        $userdata = array(
         
-        $user = $data['usuario'];
-        $pass = $data['contraseña'];
+        'username' => Input::get('username'),
+        'password' => Input::get('password')
+        );
+
+        if(Auth::attempt($userdata)){
+           return View::make('registro');  
+        }
+        else{
+            return Redirect::to('/')->with("login_errors",true);
+        }
         
-        $password =  hash('sha256', $pass);
         
-        $valida = Usuario::find(1);
         
-        if(($valida->usuario == $user) && ($valida->pass == $password)){
-          return View::make('registro');
-         }
-         else{
-          return View::make('login');  
          }
         
        
     }   
     
     
-}
+
 
