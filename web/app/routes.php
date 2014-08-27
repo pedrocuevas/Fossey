@@ -43,3 +43,5 @@ Route::post('/ingreso', array('uses' => 'IngresoController@crearRegistro'));
 
 Route::post('/login', array('uses' => 'LoginController@validaLogin'));
 
+Route::post('resultadoFolio', array('uses' => 'FolioController@busqueda'));
+
