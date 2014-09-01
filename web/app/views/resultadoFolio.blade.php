@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('titulo')
-Resultados de Búsqueda por Folio
+Ficha de {{$nombremascota}}
 @endsection
 
 @section('cabecera')
@@ -13,31 +13,16 @@ Resultados de Búsqueda por Folio
     <div class="col-lg-12">
      <div class="panel panel-default">
         <div class="panel-heading">
-                Striped Rows
+                {{$nombremascota}}
         </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nombre del propietario</th>
-                                <th>Nombre de la mascota</th>
-                                <th>Ver Ficha</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td><?php echo $folio;?></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <div class="col-lg-6"><h1>Nombre: {{$nombremascota}}</h1></div>
+                    <div class="col-lg-6"><h1>Especie: {{$especie}}</h1></div>
+                    <div class="col-lg-6"><h1>Raza: {{$raza}}</h1></div>
+                    <div class="col-lg-6"><h1>Fecha de Nacimiento: {{$fechanac}}</h1></div>
                 </div>
-                <!-- /.table-responsive -->
             </div>
             <!-- /.panel-body -->
         </div>

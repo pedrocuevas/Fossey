@@ -4,8 +4,12 @@ class Mascota extends Eloquent{
     
  public $timestamps = false; 
  
-public function dueño(){    
-   return $this->belongs_to(); 
+public function propietario(){    
+   return $this->belongsTo('Propietario'); 
+}
+
+public function raza(){    
+   return $this->belongsTo('Raza'); 
 }
         
 }

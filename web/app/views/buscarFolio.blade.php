@@ -9,6 +9,7 @@ Buscar Registros por N° de folio
 
 @section('contenido')
 
+        
 <form action="resultadoFolio" method="post" >
 <div class="input-group custom-search-form">
     <input name="folio" id="folio" type="text" class="form-control" placeholder="Ingrese el N° de folio" >
