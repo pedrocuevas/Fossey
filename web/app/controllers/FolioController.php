@@ -27,7 +27,7 @@ class FolioController extends BaseController {
                     );
 
 
-          return View::make('resultadoFolio',$data);
+          return View::make('registroAtencion',$data);
        }
        
     }
