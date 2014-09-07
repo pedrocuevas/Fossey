@@ -11,7 +11,7 @@ class FolioController extends BaseController {
    
        
        if(empty($mascota)){
-          return Redirect::to('buscarFolio');
+         echo  "<script>alert('No se encontraron mascotas coincidentes con el folio ingresado'); window.location='buscarFolio'; </script>";
        }
        else{
                $propietario = $mascota->propietario->nombres;

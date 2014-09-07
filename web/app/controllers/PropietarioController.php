@@ -10,13 +10,14 @@ class PropietarioController extends BaseController {
 
         $propietario = Propietario::where('rut', '=', $rut)->first();
         
-        $mascotas = Propietario::find($propietario->id)->mascotas;
         
         
-        if($mascotas->isEmpty()){
-          echo "<script>alert('No se encontraron mascotas coincidentes con el rut ingresado'')</script>";
+        
+        if(empty($propietario)){
+          echo "<script>alert('No se encontraron mascotas coincidentes con el rut ingresado'); window.location='buscarPropietario'; </script>";
         }
           else{   
+            $mascotas = Propietario::find($propietario->id)->mascotas;  
             return View::make('resultadoPropietario',array('mascotas' => $mascotas,
                               'nombrePropietario' => $propietario->nombres,
                               'apellidoPropietario' => $propietario->apellidos));
