@@ -45,3 +45,18 @@ Route::post('/login', array('uses' => 'LoginController@validaLogin'));
 
 Route::post('resultadoFolio', array('uses' => 'FolioController@busqueda'));
 
+Route::post('resultadoRut', array('uses' => 'PropietarioController@busqueda'));
+
+Route::get('verFicha{id}', array('as' => 'verFicha', function($id)
+{
+
+ $mascota = Mascota::find($id);
+ 
+ $data = array( 'nombre' => $mascota->nombre,
+                 'especie' => $mascota->raza->especie->nombre,
+                 'raza'    => $mascota->raza->nombre,
+                 'fechanac' => $mascota->fecha_nacimiento
+               );
+ 
+ return View::make('ficha', $data);    
+}));

@@ -23,7 +23,7 @@ Ingresar Nueva Atención
     <div class="well"> 
         <div class="row">
             <div class="col-lg-6">          
-                <h1>Nombre: GokU</h1>
+                <h1>Nombre: GokU {{var_dump($mascotas->toArray())}}</h1>
             </div>
             <div class="col-lg-6">
                 <h1>Especie: Canino</h1>     

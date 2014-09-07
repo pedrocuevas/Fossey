@@ -18,16 +18,16 @@ class FolioController extends BaseController {
                $raza        = $mascota->raza->nombre;
                $especie     = $mascota->raza->especie->nombre;
             
-                $data = array('nombrepropietario' => $propietario,
+                $data = array(
                               'folio'             => $folio,
-                              'nombremascota'     => $mascota['nombre'],
+                              'nombre'     => $mascota['nombre'],
                               'especie'           => $especie,
                               'raza'              => $raza,
                               'fechanac'          => $mascota['fecha_nacimiento'],
                     );
 
 
-          return View::make('registroAtencion',$data);
+          return View::make('ficha',$data);
        }
        
     }

@@ -11,7 +11,7 @@ Buscar Registros por Propietario
 
 @section('contenido')
 
-{{ Form::open(array('url' => '/resultadoBusqueda')) }}
+{{ Form::open(array('url' => '/resultadoRut')) }}
 <div class="input-group custom-search-form">
     <input name="rut" id="rut" type="text" class="form-control" placeholder="Ingrese Rut del Propietario" >
     <span class="input-group-btn">

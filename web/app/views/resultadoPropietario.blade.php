@@ -2,6 +2,7 @@
 
 @section('titulo')
 Resultados de Búsqueda por propietario
+<p>Propietario: {{$nombrePropietario." ".$apellidoPropietario}}</p>
 @endsection
 
 @section('cabecera')
@@ -13,39 +14,25 @@ Resultados de Búsqueda por propietario
     <div class="col-lg-12">
      <div class="panel panel-default">
         <div class="panel-heading">
-                Striped Rows
-        </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
+                                <th>Folio</th>
+                                <th>Nombre</th>
+                                <th>Especie</th>
+                                <th><a href="#">Ver ficha</a></th>
                             </tr>
-                        </thead>
+                        </thead>                        
                         <tbody>
+                       @foreach ($mascotas as $mascota)     
                             <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <td>{{$mascota->id}}</td>
+                                <td>{{$mascota->nombre}}</td>
+                                <td>{{$mascota->raza->especie->nombre}}</td>
+                                <td><a href="verFicha{{$mascota->id}}">Ver ficha</a></td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                       @endforeach     
                         </tbody>
                     </table>
                 </div>
