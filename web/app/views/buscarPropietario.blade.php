@@ -15,7 +15,7 @@ Buscar Registros por Propietario
 <div class="input-group custom-search-form">
     <input name="rut" id="rut" type="text" class="form-control" placeholder="Ingrese Rut del Propietario" >
     <span class="input-group-btn">
-        <button class="btn btn-default" type="button">
+        <button class="btn btn-default" type="submit">
             <i class="fa fa-search"></i>
         </button>
     </span>
