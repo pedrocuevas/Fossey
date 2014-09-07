@@ -28,7 +28,7 @@ class IngresoController extends BaseController {
         $propietario->email = $data['correo'];
         $propietario->telefono = $data['fono'];
         $propietario->save();
-        $buscaPropietario = $propietario->id ;
+        $idpropietario = $propietario->id ;
         }
         else
         {
@@ -46,7 +46,7 @@ class IngresoController extends BaseController {
         
 
 
-        echo "<script>alert('Ingreso Exitoso')</script>";
+        echo "<script>alert('Registro Exitoso!'); window.location='login'; </script>";
         
     }
 
