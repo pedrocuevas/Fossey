@@ -74,11 +74,6 @@ Ingresar Nuevo Registro
                     <p class="help-block">Ej: Pérez Cotapos</p>
                 </div>
                 <div class="form-group">
-                    <label>Fecha de Nacimiento:</label>
-                    <input name="fecha_nac" class="form-control" type="date" placeholder="12345678">
-                    <p class="help-block">Opcional.</p></br>
-                </div>
-                <div class="form-group">
                     <label>Género:</label>
                     <label class="radio-inline">
                         <input type="radio" name="genero" id="optionsRadiosInline1" value="1" checked>Masculino
@@ -147,9 +142,17 @@ Ingresar Nuevo Registro
                     <label>Fecha de Nacimiento:</label>
                     <input name="fecha_nac_mascota" class="form-control" type="date" placeholder="12345678">
                 </div>
-
-            </div>
+   
+               
         </div>
+            <div class="row">
+                <div class="col-lg-12">  
+                    <div class="form-group">
+                       <label>Observaciones:</label>
+                       <textarea name="comentario" class="form-control" type="textarea" rows="3" placeholder="Escribe aquí cualquier observación extra"></textarea>
+                   </div>
+                </div>       
+            </div>
     </div>
     <div class="panel-body">
         <div class="col-lg-12">         
