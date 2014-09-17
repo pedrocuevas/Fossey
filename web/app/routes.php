@@ -20,7 +20,10 @@ Route::get('/', function()
 
 Route::get('/registro', array('before' => 'auth','as' => 'registro', function()
 {
-    return View::make('registro');
+    $comunas = Provincia::find(25)->comunas->lists('nombre','id');
+    $combobox = array(0 => "Seleccione una comuna ") + $comunas;
+    $selected = array();
+    return View::make('registro', compact('selected','combobox'));
 }));
 
 Route::get('/buscarPropietario', array('before' => 'auth','as' => 'buscarPropietario', function()
@@ -60,3 +63,6 @@ Route::get('verFicha{id}', array('as' => 'verFicha', function($id)
  
  return View::make('ficha', $data);    
 }));
+
+
+Route::get('razas', 'cargaRazasController@razas');

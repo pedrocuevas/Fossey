@@ -33,10 +33,7 @@ Ingresar Nuevo Registro
 
                 <div class="form-group">
                     <label>Comuna:</label>
-                    <select class="form-control">
-                        <option>Maipú</option>
-
-                    </select>
+                       {{ Form::select('comunas', $combobox, $selected, array('class' => 'form-control')) }}
                     <p class="help-block">Seleccione una comuna de la lista.</p>
                 </div>
                 <div class="form-group">
@@ -112,12 +109,10 @@ Ingresar Nuevo Registro
             <div class="col-lg-4">
                 <div class="form-group">
                     <label>Especie:</label>
-                    <select class="form-control">
-                        <option>Perro</option>
-                        <option>Gato</option>
-                        <option>Conejo</option>
-                        <option>Hamster</option>
-                        <option>Otros</option>
+                    <select class="form-control" id="especie" name="especie">
+                        <option value="1">Canino</option>
+                        <option value="2">Felino</option>
+                        <option value="3">Otros</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -128,22 +123,16 @@ Ingresar Nuevo Registro
             </div>
 
             <div class="col-lg-4">
-                <div class="form-group">
+               <div class="form-group">
                     <label>Raza:</label>
-                    <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select class="form-control" id="razas" name="razas">
+                        <option value=""></option>
                     </select>
-                </div>
+               </div>
                 <div class="form-group">
                     <label>Fecha de Nacimiento:</label>
-                    <input name="fecha_nac_mascota" class="form-control" type="date" placeholder="12345678">
-                </div>
-   
-               
+                    <input name="fecha_nac_mascota" class="form-control" type="date">
+                </div>         
         </div>
             <div class="row">
                 <div class="col-lg-12">  
@@ -162,6 +151,44 @@ Ingresar Nuevo Registro
 
     {{ Form::close(); }}
 
+    
+
+
+    
+    <script>
+    
+      $(document).ready(function($){
+
+        $('#especie').change(function(){
+
+            $.get("{{ url('razas')}}", { option: $(this).val() }, 
+
+            function(data) {
+
+                var razas = $('#razas');
+
+                    razas.empty();
+
+                    $.each(data, function(key, value) {   
+
+              razas
+
+              .append($("<option></option>")
+
+              .attr("value",key)
+
+              .text(value)); 
+              });
+
+            });
+
+        });
+
+    });
+</script>
+    
     @endsection
+
+    
 
 

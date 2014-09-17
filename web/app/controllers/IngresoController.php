@@ -20,7 +20,7 @@ class IngresoController extends BaseController {
         $propietario->apellidos = $data['apellidos'];      
         $propietario->genero = $data['genero'];
         $propietario->direccion = $data['direccion'];
-        $propietario->comuna_fk = '1';
+        $propietario->comuna_fk = $data['comunas'];;
         $propietario->email = $data['correo'];
         $propietario->telefono = $data['fono'];
         $propietario->save();
@@ -37,7 +37,7 @@ class IngresoController extends BaseController {
         $mascota->fecha_nacimiento = $data['fecha_nac_mascota'];
         $mascota->propietario_id = $idpropietario;
         $mascota->genero = $data['sexo'];
-        $mascota->raza_id = '5';
+        $mascota->raza_id = $data['razas'];
         $mascota->comentario = $data['comentario'];
         $mascota->save();
         
