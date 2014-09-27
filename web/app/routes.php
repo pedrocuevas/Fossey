@@ -55,7 +55,8 @@ Route::get('verFicha{id}', array('as' => 'verFicha', function($id)
 
  $mascota = Mascota::find($id);
  
- $data = array( 'nombre' => $mascota->nombre,
+ $data = array(  'id'     => $id,
+                 'nombre' => $mascota->nombre,
                  'especie' => $mascota->raza->especie->nombre,
                  'raza'    => $mascota->raza->nombre,
                  'fechanac' => $mascota->fecha_nacimiento
@@ -66,3 +67,5 @@ Route::get('verFicha{id}', array('as' => 'verFicha', function($id)
 
 
 Route::get('razas', 'cargaRazasController@razas');
+
+Route::post('/registroAtencion{id}', array('uses' => 'AtencionController@crearRegistro'));

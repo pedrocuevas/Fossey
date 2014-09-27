@@ -43,7 +43,7 @@ class IngresoController extends BaseController {
         
 
 
-        echo "<script>alert('Registro Exitoso!'); window.location='login'; </script>";
+        echo "<script>alert('Registro Exitoso!'); window.location='/'; </script>";
         
     }
 

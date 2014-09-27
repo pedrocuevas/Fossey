@@ -37,13 +37,14 @@ Ingresar Nueva Atención
                 <h1>Fecha de Nacimiento:11/11/2011</h1>     
             </div>
         </div>
-    </div>     
+    </div>
+    {{ Form::open(array('url' => '/registroAtencion')) }}
         <div class="row">
             <div class='col-lg-6'>
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input name="fecha_nac" class="form-control" type="date">
-                    <p class="help-block">Opcional.</p></br>
+                    <input name="fecha" class="form-control" type="date">
+                   
                 </div>
             </div>
             <div class="col-lg-6">
@@ -99,6 +100,7 @@ Ingresar Nueva Atención
             <p><button type="Submit" class="btn btn-primary btn-lg">Guardar Registro</button></p>
         </div> 
     </div>
+      {{ Form::close(); }}  
   </div>   
    
     </div>
