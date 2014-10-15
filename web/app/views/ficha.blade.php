@@ -56,12 +56,18 @@ Ficha de {{$nombre}}
                             </tr>
                         </thead>                        
                         <tbody>    
-                                <td>19/09/2014</td>
-                                <td>Sebastián Suanez</td>
-                                <td><a href="#">Ver Detalles</a></td>
-                            </tr>    
+                            @foreach ($atenciones as $atencion)
+                                <tr>
+                                    <td>{{ $atencion->fecha }}</td>
+                                    <td>{{ $atencion->profesional->nombres.' '.$atencion->profesional->apellidos }}</td>
+                                    <td><a href="verAtencion{{$atencion->id}}">Ver Detalles</a></td>
+                                </tr>
+                                @endforeach  
+                              
                         </tbody>
+                       
                     </table>
+                      {{ $atenciones->links() }}
                 </div>
 </div>
 
@@ -113,7 +119,7 @@ Ficha de {{$nombre}}
             <div class="col-lg-12">
                 <div class="form-group">
                     {{ Form::label('descripcion', 'Descripción') }}
-                    {{ Form::textarea('descripcion', 'detalle de la atención', array('class' => 'form-control')) }}
+                    {{ Form::textarea('descripcion',null, array('class' => 'form-control', 'placeholder' => 'detalle de la atención')) }}
                 </div>  
             </div>
         </div>    

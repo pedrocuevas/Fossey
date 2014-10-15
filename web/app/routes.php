@@ -55,11 +55,16 @@ Route::get('verFicha{id}', array('as' => 'verFicha', function($id)
 
  $mascota = Mascota::find($id);
  
+ $atenciones = $mascota->atenciones()->paginate(3);
+ 
+
+ 
  $data = array(  'id'     => $id,
                  'nombre' => $mascota->nombre,
                  'especie' => $mascota->raza->especie->nombre,
                  'raza'    => $mascota->raza->nombre,
-                 'fechanac' => $mascota->fecha_nacimiento
+                 'fechanac' => $mascota->fecha_nacimiento,
+                 'atenciones' => $atenciones
                );
  
  return View::make('ficha', $data);    

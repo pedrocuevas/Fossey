@@ -11,6 +11,11 @@ public function propietario(){
 public function raza(){    
    return $this->belongsTo('Raza'); 
 }
+
+ public function atenciones(){
+     
+    return $this->hasMany('Atencion'); 
+ }
         
 }
 
