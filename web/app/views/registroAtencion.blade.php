@@ -43,7 +43,7 @@ Ingresar Nueva Atención
             <div class='col-lg-6'>
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input name="fecha" class="form-control" type="date">
+                    <input name="fecha" class="form-control" type="date" value="24-10-1989">
                    
                 </div>
             </div>

@@ -57,10 +57,10 @@ Route::get('verFicha{id}', array('as' => 'verFicha', function($id)
  
  $atenciones = $mascota->atenciones()->paginate(3);
  
+Session::put('nombremascota', $mascota->nombre);
 
  
  $data = array(  'id'     => $id,
-                 'nombre' => $mascota->nombre,
                  'especie' => $mascota->raza->especie->nombre,
                  'raza'    => $mascota->raza->nombre,
                  'fechanac' => $mascota->fecha_nacimiento,
@@ -74,3 +74,19 @@ Route::get('verFicha{id}', array('as' => 'verFicha', function($id)
 Route::get('razas', 'cargaRazasController@razas');
 
 Route::post('/registroAtencion{id}', array('uses' => 'AtencionController@crearRegistro'));
+
+Route::get('verAtencion{id}', array('as' => 'verAtencion', function($id)
+{
+
+ $atencion = Atencion::find($id);
+ 
+ $data = array(  
+                 'descripcion'     => $atencion->descripcion,
+                 'fecha_atencion'  => $atencion->fecha,
+                 'peso'            => $atencion->peso,
+                 'descripcion'     => $atencion->descripcion
+          
+               );
+ 
+ return View::make('detalles', $data);    
+}));

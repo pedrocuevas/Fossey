@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('titulo')
-Ficha de {{$nombre}}
+Ficha de {{Session::get('nombremascota')}}
 @endsection
 
 @section('cabecera')
@@ -20,7 +20,7 @@ Ficha de {{$nombre}}
     <div class="well"> 
         <div class="row">
             <div class="col-lg-6">          
-                <h1>Nombre: {{$nombre}}</h1>
+                <h1>Nombre: {{Session::get('nombremascota')}}</h1>
             </div>
             <div class="col-lg-6">
                 <h1>Especie: {{$especie}}</h1>     
@@ -85,7 +85,7 @@ Ficha de {{$nombre}}
             <div class='col-lg-6'>
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input name="fecha" class="form-control" type="date">
+                    <input name="fecha" class="form-control" type="date" value="{{date("Y-m-d")}}">
                    
                 </div>
             </div>
@@ -102,7 +102,8 @@ Ficha de {{$nombre}}
                 <div class="form-group">
                     <label>Vacuna:</label>
                     <select class="form-control">
-                        <option>Octuple</option>
+                        <option value="Octuple">Octuple</option>
+                        <option value="Antirábica">Antirábica</option>
                     </select>
                 </div>  
             </div>
@@ -127,7 +128,7 @@ Ficha de {{$nombre}}
             <div class='col-lg-6'>
                 <div class="form-group">
                     <label>Fecha del próximo control:</label>
-                    <input name="fecha_control" class="form-control" type="date">
+                    <input name="fecha_control" class="form-control" type="date" min="{{date("Y-m-d")}}">
                 </div>
             </div>
             <div class='col-lg-6'>

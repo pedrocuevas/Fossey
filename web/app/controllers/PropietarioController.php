@@ -16,7 +16,10 @@ class PropietarioController extends BaseController {
         if(empty($propietario)){
           echo "<script>alert('No se encontraron mascotas coincidentes con el rut ingresado'); window.location='buscarPropietario'; </script>";
         }
-          else{   
+          else{
+            Session::put('emailpropietario', $propietario->email);
+            Session::put('nombrespropietario', $propietario->nombres);
+            Session::put('apellidospropietario', $propietario->apellidos);
             $mascotas = Propietario::find($propietario->id)->mascotas;  
             return View::make('resultadoPropietario',array('mascotas' => $mascotas,
                               'nombrePropietario' => $propietario->nombres,
