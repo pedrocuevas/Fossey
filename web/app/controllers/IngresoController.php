@@ -20,7 +20,7 @@ class IngresoController extends BaseController {
         $propietario->apellidos = $data['apellidos'];      
         $propietario->genero = $data['genero'];
         $propietario->direccion = $data['direccion'];
-        $propietario->comuna_fk = $data['comunas'];;
+        $propietario->comuna_id = $data['comunas'];;
         $propietario->email = $data['correo'];
         $propietario->telefono = $data['fono'];
         $propietario->save();

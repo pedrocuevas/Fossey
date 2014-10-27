@@ -27,5 +27,12 @@ class PropietarioController extends BaseController {
           }
        }
        
+       public function borrar(){
+           
+           $propietario = Propietario::find(Session::get('id'));
+           $propietario->delete();
+           return Redirect::to('buscarPropietarioMantenedor')->with('message','ok_delete');
+       }
+       
     }
 

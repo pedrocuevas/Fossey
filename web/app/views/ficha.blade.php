@@ -16,59 +16,59 @@ Ficha de {{Session::get('nombremascota')}}
         <div class="pull-right">
         </div>
     </div>
-<div class="panel-body">
-    <div class="well"> 
-        <div class="row">
-            <div class="col-lg-6">          
-                <h1>Nombre: {{Session::get('nombremascota')}}</h1>
+    <div class="panel-body">
+        <div class="well"> 
+            <div class="row">
+                <div class="col-lg-6">          
+                    <h1>Nombre: {{Session::get('nombremascota')}}</h1>
+                </div>
+                <div class="col-lg-6">
+                    <h1>Especie: {{$especie}}</h1>     
+                </div>
+            </div>   
+            <div class="row">
+                <div class="col-lg-6">          
+                    <h1>Raza: {{$raza}}</h1>
+                </div>
+                <div class="col-lg-6">
+                    <h1>Fecha de Nacimiento: {{$fechanac}}</h1>     
+                </div>
             </div>
-            <div class="col-lg-6">
-                <h1>Especie: {{$especie}}</h1>     
-            </div>
-        </div>   
-        <div class="row">
-            <div class="col-lg-6">          
-                <h1>Raza: {{$raza}}</h1>
-            </div>
-            <div class="col-lg-6">
-                <h1>Fecha de Nacimiento: {{$fechanac}}</h1>     
-            </div>
-        </div>
-    </div> 
-</div>
-              
-        
+        </div> 
+    </div>
+
+
 </div>
 <div class="panel panel-default">
-                        <div class="panel-heading">
-                        <i class="fa fa-file fa-fw"></i> Historial de Atenciones
-                        <div class="pull-right">
-                        </div>
-                    </div>
-  <div class="table-responsive">
+    <div class="panel-heading">
+        <i class="fa fa-file fa-fw"></i> Historial de Atenciones
+        <div class="pull-right">
+        </div>
+    </div>
+    <div class="table-responsive">
 
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Atendido por</th>
-                                <th></th>
-                            </tr>
-                        </thead>                        
-                        <tbody>    
-                            @foreach ($atenciones as $atencion)
-                                <tr>
-                                    <td>{{ $atencion->fecha }}</td>
-                                    <td>{{ $atencion->profesional->nombres.' '.$atencion->profesional->apellidos }}</td>
-                                    <td><a href="verAtencion{{$atencion->id}}">Ver Detalles</a></td>
-                                </tr>
-                                @endforeach  
-                              
-                        </tbody>
-                       
-                    </table>
-                      {{ $atenciones->links() }}
-                </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Atendido por</th>
+                    <th></th>
+                </tr>
+            </thead>                        
+            <tbody>    
+                @foreach ($atenciones as $atencion)
+                <tr>
+                    <td>{{ $atencion->fecha }}</td>
+                    <td>{{ $atencion->profesional->nombres.' '.$atencion->profesional->apellidos }}</td>
+                    <td><a href="verAtencion{{$atencion->id}}">Ver Detalles</a></td>
+                </tr>
+                @endforeach  
+
+            </tbody>
+
+        </table>
+        {{ $atenciones->links() }}
+    </div>
 </div>
 
 <div class="panel panel-default">
@@ -78,15 +78,15 @@ Ficha de {{Session::get('nombremascota')}}
         </div>
     </div>
     <!-- /.panel-heading -->
-<div class="panel-body">
-   
-           {{ Form::open(array('url' => '/registroAtencion'."$id")) }}
+    <div class="panel-body">
+
+        {{ Form::open(array('url' => '/registroAtencion'."$id")) }}
         <div class="row">
             <div class='col-lg-6'>
                 <div class="form-group">
                     <label>Fecha:</label>
                     <input name="fecha" class="form-control" type="date" value="{{date("Y-m-d")}}">
-                   
+
                 </div>
             </div>
             <div class="col-lg-6">
@@ -133,21 +133,20 @@ Ficha de {{Session::get('nombremascota')}}
             </div>
             <div class='col-lg-6'>
                 <div class="form-group">
-                  {{ Form::label('notificación', '¿Notificar por correo al propietario?') }}
-                  {{ Form::checkbox('notificar', '1', true) }}
+                    {{ Form::label('notificación', '¿Notificar por correo al propietario?') }}
+                    {{ Form::checkbox('notificar', '1', true) }}
                 </div>
             </div>  
         </div>
-  <div class="row"> 
-        <div class="col-lg-12">         
-            <p><button type="Submit" class="btn btn-primary btn-lg">Guardar Registro</button></p>
-        </div> 
-    </div>
-      {{ Form::close(); }} 
-   
+        <div class="row"> 
+            <div class="col-lg-12">         
+                <p><button type="Submit" class="btn btn-primary btn-lg">Guardar Registro</button></p>
+            </div> 
+        </div>
+        {{ Form::close(); }} 
+
     </div>
 
 
-@endsection
-    
-    
+    @endsection
+

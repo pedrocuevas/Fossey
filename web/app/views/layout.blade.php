@@ -93,8 +93,30 @@
                             <li>
                                 <a href="medicamentos.html"><i class="fa fa-book fa-fw"></i> Medicamentos</a>
                             </li>
-
-
+                            
+                            <li>
+                                <a href="#"><i class="fa fa-wrench fa-fw"></i> Mantenedor<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="{{ URL::route('buscarPropietarioMantenedor')}}">Propietario</a>
+                                    </li>
+                                
+                                  <li>
+                                    <a href="{{ URL::route('buscarFolio')}}">Profesional<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="#">Agregar</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Modificar</a>
+                                            </li>
+          
+                                        </ul>
+                                    <!-- /.nav-third-level -->
+                                   </li>
+                                 
+                                </ul>
+                            </li>                            
 
                         </ul>
                         <!-- /#side-menu -->

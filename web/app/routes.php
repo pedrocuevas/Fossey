@@ -90,3 +90,24 @@ Route::get('verAtencion{id}', array('as' => 'verAtencion', function($id)
  
  return View::make('detalles', $data);    
 }));
+
+
+Route::get('/buscarPropietarioMantenedor', array('before' => 'auth','as' => 'buscarPropietarioMantenedor', function()
+{
+    return View::make('buscarPropietarioMantenedor');
+}));
+
+Route::post('resultadoPropietarioMantenedor', array('uses' => 'PropietarioMantenedorController@busqueda'));
+
+Route::get('/editarPropietario', array('before' => 'auth','as' => 'editarPropietario', function()
+{
+    $comunas = Provincia::find(25)->comunas->lists('nombre','id');
+    $combobox = array(0 => "Seleccione una comuna ") + $comunas;
+    $selected = Session::get('comuna_id');;
+    
+    return View::make('editarPropietario',compact('selected','combobox'));
+}));
+
+Route::post('/editarPropietarioGuardar', array('uses' => 'EditarPropietarioController@editarRegistro'));
+
+Route::get('borrarPropietario', 'PropietarioController@borrar');
