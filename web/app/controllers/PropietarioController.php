@@ -21,7 +21,7 @@ class PropietarioController extends BaseController {
             Session::put('nombrespropietario', $propietario->nombres);
             Session::put('apellidospropietario', $propietario->apellidos);
             $mascotas = Propietario::find($propietario->id)->mascotas;  
-            return View::make('resultadoPropietario',array('mascotas' => $mascotas,
+            return View::make('busqueda.propietario.resultadoPropietario',array('mascotas' => $mascotas,
                               'nombrePropietario' => $propietario->nombres,
                               'apellidoPropietario' => $propietario->apellidos));
           }

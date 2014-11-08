@@ -80,20 +80,27 @@ Ficha de {{Session::get('nombremascota')}}
     <!-- /.panel-heading -->
     <div class="panel-body">
 
-        {{ Form::open(array('url' => '/registroAtencion'."$id")) }}
+        {{ Form::open(array('url' => 'ficha/registroAtencion'."$id")) }}
         <div class="row">
-            <div class='col-lg-6'>
+            <div class='col-lg-4'>
                 <div class="form-group">
                     <label>Fecha:</label>
                     <input name="fecha" class="form-control" type="date" value="{{date("Y-m-d")}}">
 
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="form-group">
                     <label>Peso:</label>
                     <input name="peso" id="peso" class="form-control"   maxlength="4" required>
                     <p class="help-block">Ingrese el peso de la mascota en KG</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label>Atendido por:</label>
+                    {{ Form::select('profesionales', $combobox2, $selected2, array('class' => 'form-control', 'tabindex' => '4')) }}
+                    <p class="help-block">Seleccione una comuna de la lista.</p>
                 </div>
             </div>
         </div>    

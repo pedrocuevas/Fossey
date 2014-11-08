@@ -22,7 +22,7 @@ alert("Datos actualizados")
 </script>
 @endif
 
-{{ Form::open(array('url' => '/resultadoPropietarioMantenedor')) }}
+{{ Form::open(array('route' => 'resultadoPropietarioMantenedor')) }}
 <div class="input-group custom-search-form">
     <input name="rut" id="rut" type="text" class="form-control" placeholder="Ingrese Rut del Propietario" >
     <span class="input-group-btn">

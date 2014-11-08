@@ -30,7 +30,7 @@ Resultados de Búsqueda por propietario
                                 <td>{{$mascota->id}}</td>
                                 <td>{{$mascota->nombre}}</td>
                                 <td>{{$mascota->raza->especie->nombre}}</td>
-                                <td><a href="verFicha{{$mascota->id}}">Ver ficha</a></td>
+                                <td><a href="{{URL::to('/ficha/verFicha'.$mascota->id)}}">Ver ficha</a></td>
                             </tr>
                        @endforeach     
                         </tbody>

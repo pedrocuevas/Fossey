@@ -14,7 +14,7 @@ class PropietarioMantenedorController extends BaseController {
         
         
         if(empty($propietario)){
-          echo "<script>alert('No se encontró propietario'); window.location='buscarPropietarioMantenedor'; </script>";
+          echo "<script>alert('No se encontró propietario'); window.location='/Fossey/web/public/mantenedor/propietario/buscarPropietarioMantenedor'; </script>";
         }
           else{
               
@@ -28,7 +28,7 @@ class PropietarioMantenedorController extends BaseController {
              Session::put('correo', $propietario->email);
              Session::put('fono', $propietario->telefono); 
      
-            return View::make('mantenedorPropietario',array(
+            return View::make('mantenedor.propietario.mantenedorPropietario',array(
                               'nombres' => $propietario->nombres,
                               'apellidos' => $propietario->apellidos,
                               'rut' => $propietario->rut,

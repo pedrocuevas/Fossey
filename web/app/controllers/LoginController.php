@@ -12,7 +12,7 @@ class LoginController extends BaseController {
         );
 
         if(Auth::attempt($userdata)){
-           return View::make('layout');  
+           return Redirect::to('/home'); 
         }
         else{
             return Redirect::to('/')->with("login_errors",true);

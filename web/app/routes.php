@@ -15,25 +15,33 @@
 
 Route::get('/', function()
 {
-	return View::make('login');
+	return View::make('login.login');
 });
 
-Route::get('/registro', array('before' => 'auth','as' => 'registro', function()
+Route::get('/home', function()
+{
+	return View::make('layout');
+});
+
+Route::get('/registro/registro', array('before' => 'auth','as' => 'registro', function()
 {
     $comunas = Provincia::find(25)->comunas->lists('nombre','id');
     $combobox = array(0 => "Seleccione una comuna ") + $comunas;
     $selected = array();
-    return View::make('registro', compact('selected','combobox'));
+    
+
+    
+    return View::make('registro.registro', compact('selected','combobox'));
 }));
 
-Route::get('/buscarPropietario', array('before' => 'auth','as' => 'buscarPropietario', function()
+Route::get('/busqueda/propietario/buscarPropietario', array('before' => 'auth','as' => 'buscarPropietario', function()
 {
-    return View::make('buscarPropietario');
+    return View::make('busqueda.propietario.buscarPropietario');
 }));
 
-Route::get('/buscarFolio', array('before' => 'auth','as' => 'buscarFolio', function()
+Route::get('/busqueda/folio/buscarFolio', array('before' => 'auth','as' => 'buscarFolio', function()
 {
-    return View::make('buscarFolio');
+    return View::make('busqueda.folio.buscarFolio');
 }));
 
 Route::get('/logout', array('as' => 'logout', function()
@@ -46,11 +54,11 @@ Route::post('/ingreso', array('uses' => 'IngresoController@crearRegistro'));
 
 Route::post('/login', array('uses' => 'LoginController@validaLogin'));
 
-Route::post('resultadoFolio', array('uses' => 'FolioController@busqueda'));
+Route::post('busqueda/folio/buscarFolio/resultadoFolio', array('uses' => 'FolioController@busqueda'));
 
-Route::post('resultadoRut', array('uses' => 'PropietarioController@busqueda'));
+Route::post('busqueda/propietario/buscarPropietario/resultadoRut', array('uses' => 'PropietarioController@busqueda'));
 
-Route::get('verFicha{id}', array('as' => 'verFicha', function($id)
+Route::get('ficha/verFicha{id}', array('as' => 'verFicha', function($id)
 {
 
  $mascota = Mascota::find($id);
@@ -59,21 +67,29 @@ Route::get('verFicha{id}', array('as' => 'verFicha', function($id)
  
 Session::put('nombremascota', $mascota->nombre);
 
- 
+    //$profesionales = Profesional::all()->lists('nombres'.'apellidos','id');
+    $profesionales = DB::table('profesionales')->select(DB::raw('concat(nombres,apellidos) as nombre,id'))->lists('nombre', 'id');
+    $combobox2 = array(0 => "Seleccione un profesional ") + $profesionales;
+    $selected2 = array();
+    
  $data = array(  'id'     => $id,
                  'especie' => $mascota->raza->especie->nombre,
                  'raza'    => $mascota->raza->nombre,
                  'fechanac' => $mascota->fecha_nacimiento,
-                 'atenciones' => $atenciones
+                 'atenciones' => $atenciones,
+                 'combobox2' => $combobox2,
+                 'selected2' => $selected2
                );
  
- return View::make('ficha', $data);    
+
+ 
+ return View::make('ficha.ficha', $data);    
 }));
 
 
 Route::get('razas', 'cargaRazasController@razas');
 
-Route::post('/registroAtencion{id}', array('uses' => 'AtencionController@crearRegistro'));
+Route::post('ficha/registroAtencion{id}', array('uses' => 'AtencionController@crearRegistro'));
 
 Route::get('verAtencion{id}', array('as' => 'verAtencion', function($id)
 {
@@ -92,22 +108,50 @@ Route::get('verAtencion{id}', array('as' => 'verAtencion', function($id)
 }));
 
 
-Route::get('/buscarPropietarioMantenedor', array('before' => 'auth','as' => 'buscarPropietarioMantenedor', function()
+Route::get('/mantenedor/propietario/buscarPropietarioMantenedor', array('before' => 'auth','as' => 'buscarPropietarioMantenedor', function()
 {
-    return View::make('buscarPropietarioMantenedor');
+    return View::make('mantenedor.propietario.buscarPropietarioMantenedor');
 }));
 
-Route::post('resultadoPropietarioMantenedor', array('uses' => 'PropietarioMantenedorController@busqueda'));
+Route::post('mantenedor/propietario/resultadoPropietarioMantenedor', array('before' => 'auth','as' => 'resultadoPropietarioMantenedor','uses' => 'PropietarioMantenedorController@busqueda'));
 
-Route::get('/editarPropietario', array('before' => 'auth','as' => 'editarPropietario', function()
+Route::get('/mantenedor/propietario/editarPropietario', array('before' => 'auth','as' => 'editarPropietario', function()
 {
     $comunas = Provincia::find(25)->comunas->lists('nombre','id');
     $combobox = array(0 => "Seleccione una comuna ") + $comunas;
     $selected = Session::get('comuna_id');;
     
-    return View::make('editarPropietario',compact('selected','combobox'));
+    return View::make('mantenedor.propietario.editarPropietario',compact('selected','combobox'));
 }));
 
 Route::post('/editarPropietarioGuardar', array('uses' => 'EditarPropietarioController@editarRegistro'));
 
 Route::get('borrarPropietario', 'PropietarioController@borrar');
+
+Route::get('/mantenedor/profesional/agregarProfesional', array('before' => 'auth','as' => 'agregarProfesional', function()
+{
+    $comunas = Provincia::find(25)->comunas->lists('nombre','id');
+    $combobox = array(0 => "Seleccione una comuna ") + $comunas;
+    $selected = array();
+    
+  
+    return View::make('mantenedor.profesional.agregarProfesional', compact('selected','combobox'));
+}));
+
+Route::post('agregarProfesional', 'ProfesionalMantenedorController@agregar');
+
+Route::get('/mantenedor/profesional/buscarProfesionalMantenedor', array('before' => 'auth','as' => 'buscarProfesionalMantenedor', function()
+{
+    return View::make('mantenedor.profesional.buscarProfesionalMantenedor');
+}));
+
+Route::post('mantenedor/propietario/resultadoProfesionalMantenedor', array('before' => 'auth','as' => 'resultadoProfesionalMantenedor','uses' => 'ProfesionalMantenedorController@busqueda'));
+
+Route::get('/mantenedor/propietario/editarProfesional', array('before' => 'auth','as' => 'editarProfesional', function()
+{
+    $comunas = Provincia::find(25)->comunas->lists('nombre','id');
+    $combobox = array(0 => "Seleccione una comuna ") + $comunas;
+    $selected = Session::get('comuna_id');;
+    
+    return View::make('mantenedor.profesional.editarProfesional',compact('selected','combobox'));
+}));

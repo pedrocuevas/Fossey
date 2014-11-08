@@ -27,7 +27,7 @@ class AtencionController extends BaseController {
        }
 
 
-        echo "<script>alert('Registro Exitoso!'); window.location='/Fossey/web/public/buscarPropietario' </script>";
+        echo "<script>alert('Registro Exitoso!'); window.location='/Fossey/web/public/busqueda/propietario/buscarPropietario' </script>";
         
     }
 

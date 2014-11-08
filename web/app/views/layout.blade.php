@@ -105,10 +105,10 @@
                                     <a href="{{ URL::route('buscarFolio')}}">Profesional<span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
                                             <li>
-                                                <a href="#">Agregar</a>
+                                                <a href="{{ URL::route('agregarProfesional')}}">Agregar</a>
                                             </li>
                                             <li>
-                                                <a href="#">Modificar</a>
+                                                <a href="{{ URL::route('buscarProfesionalMantenedor')}}">Modificar</a>
                                             </li>
           
                                         </ul>

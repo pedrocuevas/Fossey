@@ -10,7 +10,7 @@ Buscar Registros por N° de folio
 @section('contenido')
 
         
-<form action="resultadoFolio" method="post" >
+{{ Form::open(array('url' => '/busqueda/folio/buscarFolio/resultadoFolio')) }}
 <div class="input-group custom-search-form">
     <input name="folio" id="folio" type="text" class="form-control" placeholder="Ingrese el N° de folio" >
     <span class="input-group-btn">
@@ -19,6 +19,6 @@ Buscar Registros por N° de folio
         </button>
     </span>
 </div>
-</form>    
+{{ Form::close() }}    
 
 @endsection
