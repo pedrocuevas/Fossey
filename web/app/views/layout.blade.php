@@ -92,6 +92,14 @@
                             </li>
                             <li>
                                 <a href="medicamentos.html"><i class="fa fa-book fa-fw"></i> Medicamentos</a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="{{ URL::route('agregarMedicamento')}}">Agregar Medicamento</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ URL::route('calcularDosis')}}">Calcular Dosis</a>
+                                    </li>
+                                </ul>
                             </li>
                             
                             <li>

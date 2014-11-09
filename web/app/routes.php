@@ -155,3 +155,22 @@ Route::get('/mantenedor/propietario/editarProfesional', array('before' => 'auth'
     
     return View::make('mantenedor.profesional.editarProfesional',compact('selected','combobox'));
 }));
+
+Route::get('/medicamentos/agregarMedicamento', array('before' => 'auth','as' => 'agregarMedicamento', function()
+{
+    return View::make('medicamentos.agregarMedicamento');
+    
+}));
+
+Route::post('medicamento/guardarMedicamento', array('before' => 'auth','as' => 'guardarMedicamento','uses' => 'MedicamentoController@agregarMedicamento'));
+
+Route::get('/medicamentos/calcularDosis', array('before' => 'auth','as' => 'calcularDosis', function()
+{
+    $medicamentos = Medicamento::all()->lists('nombre_generico','id');
+    $combobox = array(0 => "Seleccione un medicamento ") + $medicamentos;
+    $selected = array(0);
+    
+    return View::make('medicamentos.calcularDosis',compact('selected','combobox'));
+}));
+
+Route::post('medicamento/Dosis', array('before' => 'auth','as' => 'calculoDosis','uses' => 'MedicamentoController@calcularDosis'));
