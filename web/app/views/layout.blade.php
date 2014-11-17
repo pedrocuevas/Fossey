@@ -97,7 +97,16 @@
                                         <a href="{{ URL::route('agregarMedicamento')}}">Agregar Medicamento</a>
                                     </li>
                                     <li>
-                                        <a href="{{ URL::route('calcularDosis')}}">Calcular Dosis</a>
+                                        <a href="#">Calcular Dosis</a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="{{ URL::to('/medicamentos/calcularDosis')}}">Canino</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{URL::to('/medicamentos/calcularDosis')}}">Felino</a>
+                                            </li>
+
+                                        </ul>
                                     </li>
                                 </ul>
                             </li>

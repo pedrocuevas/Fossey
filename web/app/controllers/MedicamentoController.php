@@ -30,20 +30,29 @@ class MedicamentoController extends BaseController {
     public function calcularDosis(){
         
        $data = Input::all(); 
-       $medicamento = Medicamento::find($data['medicamentos']);
+      // $medicamento = Medicamento::find(1);
+     $medicamento = Medicamento::where('nombre_generico', '=', $data['busqueda'])->get()->toArray();
+      //$medicamento = DB::table('medicamentos')->where('id', '=', '1')->get();
+      
+
        
-       $dosis_min = $medicamento->dosis_min;
-       $dosis_max = $medicamento->dosis_max;
-       $frecuencia = $medicamento->frecuencia;
+       $dosis_min = $medicamento[0]['dosis_min'];
+       $dosis_max = $medicamento[0]['dosis_max'];
+       $frecuencia = $medicamento[0]['frecuencia'];
        
        $calculo_min = $dosis_min * $data['peso'];
        $calculo_max = $dosis_max * $data['peso'];
        $calculo_prom = (($dosis_min+$dosis_max)/2) * $data['peso'];
        
-       echo "Dosis Mínima:.$calculo_min.";
-       echo "Dosis Máxima:.$calculo_max.";
-       echo "Dosis Promedio:.$calculo_prom.";
-       echo "Frecuencia:.$frecuencia.";
-        
+        $data = array(  
+                 'calculo_min'     => $calculo_min,
+                 'calculo_max'     => $calculo_max,
+                 'calculo_prom'    => $calculo_prom,
+                 'frecuencia'      => $frecuencia
+               );
+        Input::flash();
+      //  return Redirect::to('medicamentos/calcularDosis')->with('datos',$data);
+         return View::make('medicamentos.calcularDosis', $data);   
+         
     }
 }

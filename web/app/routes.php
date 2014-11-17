@@ -91,7 +91,7 @@ Route::get('razas', 'cargaRazasController@razas');
 
 Route::post('ficha/registroAtencion{id}', array('uses' => 'AtencionController@crearRegistro'));
 
-Route::get('verAtencion{id}', array('as' => 'verAtencion', function($id)
+Route::get('ficha/verAtencion{id}', array('as' => 'verAtencion', function($id)
 {
 
  $atencion = Atencion::find($id);
@@ -104,7 +104,7 @@ Route::get('verAtencion{id}', array('as' => 'verAtencion', function($id)
           
                );
  
- return View::make('detalles', $data);    
+ return View::make('ficha.detalles', $data);    
 }));
 
 
@@ -166,11 +166,11 @@ Route::post('medicamento/guardarMedicamento', array('before' => 'auth','as' => '
 
 Route::get('/medicamentos/calcularDosis', array('before' => 'auth','as' => 'calcularDosis', function()
 {
-    $medicamentos = Medicamento::all()->lists('nombre_generico','id');
-    $combobox = array(0 => "Seleccione un medicamento ") + $medicamentos;
-    $selected = array(0);
+
     
-    return View::make('medicamentos.calcularDosis',compact('selected','combobox'));
+return View::make('medicamentos.calcularDosis');
 }));
 
 Route::post('medicamento/Dosis', array('before' => 'auth','as' => 'calculoDosis','uses' => 'MedicamentoController@calcularDosis'));
+
+Route::post('/ajax', array( 'as' => 'ajax', 'uses' => 'AjaxController@buscar'));
