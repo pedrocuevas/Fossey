@@ -57,6 +57,8 @@ alert("Medicamento guardado con exito!")
                     <p class="help-block">mg/Kg</p>
                 </div>
             </div>
+        </div> 
+        <div class="row">
             <div class="col-lg-2">
                 <div class="form-group">
                     {{Form::label('frecuencia', 'Frecuencia:')}}
@@ -64,7 +66,13 @@ alert("Medicamento guardado con exito!")
                     <p class="help-block">Veces/Día</p>
                 </div>
             </div>
-        </div>  
+            <div class="col-lg-2">
+                <div class="form-group">
+                    {{Form::label('tipo', 'Tipo:')}}
+                    {{Form::select('tipo', array('1' => 'Canino', '2' => 'Felino','3' => 'Todos'), '1',array('class' => 'form-control') )}}
+                </div>
+            </div>
+        </div>           
         <div class="row">
             <div class="col-lg-6">
                 <div class="form-group">
@@ -78,8 +86,7 @@ alert("Medicamento guardado con exito!")
                     {{Form::textarea('contraindicaciones',null,array('class' => 'form-control', 'rows' => '5'))}}
                 </div>
             </div>      
-        </div>
-                        
+        </div>        
     <div class="panel panel-default">
 
     <div class="panel-body">

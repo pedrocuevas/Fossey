@@ -164,9 +164,9 @@ Route::get('/medicamentos/agregarMedicamento', array('before' => 'auth','as' => 
 
 Route::post('medicamento/guardarMedicamento', array('before' => 'auth','as' => 'guardarMedicamento','uses' => 'MedicamentoController@agregarMedicamento'));
 
-Route::get('/medicamentos/calcularDosis', array('before' => 'auth','as' => 'calcularDosis', function()
+Route::get('/medicamentos/calcularDosis{id}', array('before' => 'auth','as' => 'calcularDosis', function($id)
 {
-
+Session::put('iddosis',$id);
     
 return View::make('medicamentos.calcularDosis');
 }));

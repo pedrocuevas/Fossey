@@ -31,7 +31,10 @@ class MedicamentoController extends BaseController {
         
        $data = Input::all(); 
       // $medicamento = Medicamento::find(1);
-     $medicamento = Medicamento::where('nombre_generico', '=', $data['busqueda'])->get()->toArray();
+     $medicamento = Medicamento::where('nombre_generico', '=', $data['busqueda'])
+                                ->where('tipo','=', Session::get('iddosis'))
+                                ->orwhere('nombre_generico', '=', $data['busqueda'])
+                                ->where('tipo','=',3)->get()->toArray();
       //$medicamento = DB::table('medicamentos')->where('id', '=', '1')->get();
       
 

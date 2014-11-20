@@ -100,10 +100,10 @@
                                         <a href="#">Calcular Dosis</a>
                                         <ul class="nav nav-third-level">
                                             <li>
-                                                <a href="{{ URL::to('/medicamentos/calcularDosis')}}">Canino</a>
+                                                <a href="{{ URL::to('/medicamentos/calcularDosis1')}}">Canino</a>
                                             </li>
                                             <li>
-                                                <a href="{{URL::to('/medicamentos/calcularDosis')}}">Felino</a>
+                                                <a href="{{URL::to('/medicamentos/calcularDosis2')}}">Felino</a>
                                             </li>
 
                                         </ul>

@@ -1,7 +1,11 @@
 @extends('layout')
 
 @section('titulo')
-Cálculo de Dosis
+<?php if(Session::get('iddosis') == 1)
+       echo "Cálculo de dosis para caninos";
+      else
+       echo "Cálculo de dosis para felinos";
+?>      
 @endsection
 
 @section('contenido')
