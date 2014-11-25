@@ -5,7 +5,8 @@ class MedicamentoController extends BaseController {
     public function agregarMedicamento() {
 
         $data = Input::all(); 
-        $buscaMedicamento = Medicamento::where('nombre_generico','=',$data['nombre_generico'])->pluck('id');
+        $buscaMedicamento = Medicamento::where('nombre_generico','=',$data['nombre_generico'])->
+                                         where('tipo','=',$data['tipo'])->pluck('id');
          
         if( empty($buscaMedicamento) )
         { 
@@ -17,6 +18,7 @@ class MedicamentoController extends BaseController {
             $medicamento->frecuencia = $data['frecuencia'];
             $medicamento->descripcion = $data['descripcion'];
             $medicamento->contraindicaciones = $data['contraindicaciones'];
+            $medicamento->tipo = $data['tipo'];
             $medicamento->save();
             return Redirect::route('agregarMedicamento')->with('message','medicamento_add');
         }

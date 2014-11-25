@@ -7,6 +7,8 @@ Ingresar Nuevo Registro
 @section('cabecera')
 {{ HTML::script('js/jquery.Rut.js') }}
 {{ HTML::script('js/rut.js') }}
+{{ HTML::script('js/bootstrap-colorselector.js') }}
+{{ HTML::style('css/bootstrap-colorselector.css') }}
 @endsection
 
 @section('contenido')
@@ -117,7 +119,17 @@ Ingresar Nuevo Registro
                 </div>
                 <div class="form-group">
                     <label>Color:</label>
-                    <input class="form-control" type="color" tabindex="13">
+                    <select id="colorselector">
+                        <option value="Negro" data-color="#000000" selected="selected">Negro</option>
+                        <option value="Blanco" data-color="#ffffff" >Blanco</option>
+                        <option value="Café" data-color="#2B1906">Café</option>
+                        <option value="Café Claro" data-color="#995003">Café Claro</option>
+                        <option value="Gris" data-color="#A19E9A">Gris</option>
+                    </select>
+
+                    <script>
+                        $('#colorselector').colorselector();
+                    </script>
 
                 </div>
             </div>

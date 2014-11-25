@@ -38,7 +38,7 @@ $(document).ready(function(){
                     dataType: "html",
                     beforeSend: function(){
                           //imagen de carga
-                          $("#resultado").html("<p align='center'><img src='/Fossey/web/public/img/ajax-loader.gif' /></p>");
+                          $("#resultado").html("<p align='center'><img src='{{ asset('img/ajax-loader.gif') }}' /></p>");
                     },
                     error: function(){
                           alert("error petición ajax");
@@ -109,10 +109,10 @@ function limpiarValor(){
                         Resultado
                     </div>
                     <div class="panel-body">
-                        <p>{{"La dosis mínima es :".$c_min." mg."}}</p>
-                        <p>{{"La dosis promedio es :".$c_prom." mg."}}</p>
-                        <p>{{"La dosis máxima es :".$c_max." mg."}}</p>
-                        <p>{{"La frecuencia es :".$frc." por día"}}</p>
+                        <p>{{"La dosis mínima es : ".$c_min." mg."}}</p>
+                        <p>{{"La dosis promedio es : ".$c_prom." mg."}}</p>
+                        <p>{{"La dosis máxima es : ".$c_max." mg."}}</p>
+                        <p>{{"La frecuencia es : ".$frc." por día"}}</p>
                     </div>
                 </div>
             </div>

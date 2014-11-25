@@ -18,10 +18,10 @@ Route::get('/', function()
 	return View::make('login.login');
 });
 
-Route::get('/home', function()
+Route::get('/home', array('before' => 'auth', 'as' => 'home', function()
 {
 	return View::make('layout');
-});
+}));
 
 Route::get('/registro/registro', array('before' => 'auth','as' => 'registro', function()
 {
