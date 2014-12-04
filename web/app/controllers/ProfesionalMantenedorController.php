@@ -25,6 +25,7 @@ class ProfesionalMantenedorController extends BaseController {
         $profesional->titulo_profesional = $data['titulo'];
         $profesional->institucion = $data['institucion'];
         $profesional->fecha_nacimiento = $data['fecha_nac'];
+        $profesional->tipo_id = $data['tipo'];
         $profesional->save();
       
        return Redirect::to('/home')->with('message','ok_update');
@@ -57,7 +58,6 @@ class ProfesionalMantenedorController extends BaseController {
               
              Session::put('id_pro', $profesional->id);
              Session::put('nombres_pro', $profesional->nombres);
-             Session::put('apellidos_pro', $profesional->apellidos);
              Session::put('comuna_id_pro', $profesional->comuna_id);
              Session::put('direccion_pro', $profesional->direccion);
              Session::put('rut_pro', $profesional->rut); 

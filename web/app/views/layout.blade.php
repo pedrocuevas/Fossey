@@ -88,7 +88,21 @@
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="tables.html"><i class="fa fa-calendar fa-fw"></i> Agenda</a>
+                                <a href="#"><i class="fa fa-calendar fa-fw"></i> Agenda</a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="#">Agregar Horario</a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="{{ URL::route('agregarHorarioPeluqueria')}}">Peluquería</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ URL::route('agregarHorarioVeterinaria')}}">Consulta Veterinaria</a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="medicamentos.html"><i class="fa fa-book fa-fw"></i> Medicamentos</a>
@@ -110,16 +124,16 @@
                                     </li>
                                 </ul>
                             </li>
-                            
+
                             <li>
                                 <a href="#"><i class="fa fa-wrench fa-fw"></i> Mantenedor<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="{{ URL::route('buscarPropietarioMantenedor')}}">Propietario</a>
                                     </li>
-                                
-                                  <li>
-                                    <a href="{{ URL::route('buscarFolio')}}">Profesional<span class="fa arrow"></span></a>
+
+                                    <li>
+                                        <a href="{{ URL::route('buscarFolio')}}">Profesional<span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
                                             <li>
                                                 <a href="{{ URL::route('agregarProfesional')}}">Agregar</a>
@@ -127,11 +141,11 @@
                                             <li>
                                                 <a href="{{ URL::route('buscarProfesionalMantenedor')}}">Modificar</a>
                                             </li>
-          
+
                                         </ul>
-                                    <!-- /.nav-third-level -->
-                                   </li>
-                                 
+                                        <!-- /.nav-third-level -->
+                                    </li>
+
                                 </ul>
                             </li>                            
 
@@ -144,24 +158,18 @@
             </nav>
 
             <div id="page-wrapper">
-
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">@yield('titulo',"Inicio")</h1>
                     </div>  <!-- /.row -->
                 </div>
-
                 <div class="row">
-                    <div class="col-lg-12">
-
+                    <div class="col-lg-12">                         
                         @yield('contenido')
-
                     </div>
-
-                </div>
+                </div>           
             </div>
-
-        </div>            
+        </div>      
 
         <!-- Core Scripts - Include with every page -->
 

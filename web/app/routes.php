@@ -15,12 +15,15 @@
 
 Route::get('/', function()
 {
+    
 	return View::make('login.login');
 });
 
 Route::get('/home', array('before' => 'auth', 'as' => 'home', function()
 {
-	return View::make('layout');
+    $count = Mascota::all()->count();
+    Session::put('totalmascotas',$count);
+	return View::make('home.home');
 }));
 
 Route::get('/registro/registro', array('before' => 'auth','as' => 'registro', function()
@@ -67,8 +70,7 @@ Route::get('ficha/verFicha{id}', array('as' => 'verFicha', function($id)
  
 Session::put('nombremascota', $mascota->nombre);
 
-    //$profesionales = Profesional::all()->lists('nombres'.'apellidos','id');
-    $profesionales = DB::table('profesionales')->select(DB::raw('concat(nombres,apellidos) as nombre,id'))->lists('nombre', 'id');
+    $profesionales = Profesional::all()->lists('nombres','id');
     $combobox2 = array(0 => "Seleccione un profesional ") + $profesionales;
     $selected2 = array();
     
@@ -174,3 +176,45 @@ return View::make('medicamentos.calcularDosis');
 Route::post('medicamento/Dosis', array('before' => 'auth','as' => 'calculoDosis','uses' => 'MedicamentoController@calcularDosis'));
 
 Route::post('/ajax', array( 'as' => 'ajax', 'uses' => 'AjaxController@buscar'));
+
+
+Route::get('/agenda/agregarHorarioPeluqueria', array('before' => 'auth','as' => 'agregarHorarioPeluqueria', function()
+{
+    $profesionales = Profesional::where('tipo_id','=','2')->lists('nombres','id');
+    $combobox = array(0 => "Seleccione un profesional ") + $profesionales;
+    $selected = array();
+ 
+    return View::make('agenda.agregarHorarioPeluqueria',compact('selected','combobox'));   
+}));
+
+Route::get('/agenda/agregarHorarioVeterinaria', array('before' => 'auth','as' => 'agregarHorarioVeterinaria', function()
+{
+    $profesionales = Profesional::where('tipo_id','=','1')->lists('nombres','id');
+    $combobox = array(0 => "Seleccione un profesional ") + $profesionales;
+    $selected = array();
+ 
+    return View::make('agenda.agregarHorarioVeterinaria',compact('selected','combobox'));   
+}));
+Route::post('agenda/agregarHorarioPeluqueria/agregar', array('before' => 'auth','as' => 'agregaHorario','uses' => 'HorarioController@agregarHorario'));
+
+
+Route::get('tomarHora', function()
+{
+    
+	return View::make('agenda.tomarHora');
+});
+
+Route::post('verHorario', array('as' => 'verHorario','uses' => 'TomarHoraController@verHorario'));
+
+Route::get('selectTipo', 'selectProfesionalController@profesional');
+
+Route::get('reserva={hh}={mm}={ss}', array('as' => 'reserva', function($hh,$mm,$ss)
+{
+
+$datos = array('hora' => $hh, 'minutos' => $mm, 'segundos' => $ss);    
+    
+return View::make('agenda.reservaHora', $datos);
+	
+}));
+
+Route::post('reservarHora', array('as' => 'reservarHora','uses' => 'TomarHoraController@reservar'));
