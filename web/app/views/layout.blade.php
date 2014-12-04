@@ -145,7 +145,18 @@
                                         </ul>
                                         <!-- /.nav-third-level -->
                                     </li>
-
+                                    <li>
+                                        <a href="{{ URL::route('buscarFolio')}}">Razas<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="{{ URL::route('agregarRaza')}}">Agregar</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ URL::route('buscarRaza')}}">Modificar</a>
+                                            </li>
+                                        </ul>
+                                        <!-- /.nav-third-level -->
+                                    </li>
                                 </ul>
                             </li>                            
 

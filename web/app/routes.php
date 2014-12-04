@@ -218,3 +218,26 @@ return View::make('agenda.reservaHora', $datos);
 }));
 
 Route::post('reservarHora', array('as' => 'reservarHora','uses' => 'TomarHoraController@reservar'));
+
+Route::get('/mantenedor/raza/agregarRaza', array('before' => 'auth','as' => 'agregarRaza', function()
+{
+            return View::make('mantenedor.raza.agregarRaza');
+}));
+
+Route::get('/mantenedor/raza/buscarRaza', array('before' => 'auth','as' => 'buscarRaza', function()
+{
+            return View::make('mantenedor.raza.buscarRaza');
+}));
+
+Route::post('/mantenedor/raza/guardarRaza', array('as' => 'guardarRaza','uses' => 'RazaMantenedorController@agregar'));
+
+Route::post('/mantenedor/raza/buscarRaza', array('as' => 'resultadoRaza','uses' => 'RazaMantenedorController@buscar'));
+
+Route::get('mantenedor/raza/borrarRaza', array('as' => 'borrarRaza','uses' => 'RazaMantenedorController@borrar'));
+
+Route::get('/mantenedor/raza/editarRaza', array('before' => 'auth','as' => 'editarRaza', function()
+{
+            return View::make('mantenedor.raza.editarRaza');
+}));
+
+Route::post('/mantenedor/raza/guardarEditorRaza', array('as' => 'guardarEditorRaza','uses' => 'RazaMantenedorController@editar'));
