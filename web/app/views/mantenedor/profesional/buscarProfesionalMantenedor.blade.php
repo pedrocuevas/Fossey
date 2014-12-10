@@ -11,15 +11,20 @@ Buscar Profesional
 
 @section('contenido')
 
-<?php if(empty(Session::get('message')))$message='prueba';else$message=Session::get('message');?>
-@if($message == 'ok_delete')
-<script>
-alert("Registro borrado exitosamente")
-</script>
-@elseif($message == 'ok_update')
-<script>
-alert("Datos actualizados")
-</script>
+@if(!empty(Session::get('message')))
+    @if(Session::get('message') == 'ok_delete')
+    <script>
+    alert("Registro borrado exitosamente")
+    </script>
+    @elseif(Session::get('message') == 'ok_update')
+    <script>
+    alert("Datos actualizados")
+    </script>
+    @elseif(Session::get('message') == 'no_profesional')
+    <script>
+    alert("No se encontró profesional")
+    </script>
+    @endif
 @endif
 
 {{ Form::open(array('route' => 'resultadoProfesionalMantenedor')) }}

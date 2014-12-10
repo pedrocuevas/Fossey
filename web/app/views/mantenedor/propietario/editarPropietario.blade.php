@@ -11,7 +11,18 @@ Editar Registro
 
 @section('contenido')
 
-
+ @if ($errors->any())
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Por favor corrige los siguentes errores:</strong>
+      <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+      </ul>
+    </div>
+ @endif
+  
 <div class="panel panel-default">
     <div class="panel-heading">
         <i class="fa fa-user fa-fw"></i> Datos del Propietario
@@ -24,7 +35,7 @@ Editar Registro
 
             <!-- /.col-lg-4 (nested) -->
             <div class="col-lg-4">
-                {{ Form::open(array('url' => '/editarPropietarioGuardar')) }}
+                {{ Form::open(array('route' => 'editarPropietarioGuardar')) }}
                 <div class="form-group">
                     <label>Nombres:</label>
                     <input name="nombres" class="form-control" value="{{Session::get('nombres')}}" required>

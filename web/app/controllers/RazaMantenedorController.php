@@ -6,22 +6,30 @@ class RazaMantenedorController extends BaseController {
 
         $data = Input::all(); 
         
+        $reglas = array('nombre' => 'alpha_spaces|required|min:4|max:80',  );    
+        $validador = Validator::make($data, $reglas);
+        
+        if($validador->fails()){
+            return Redirect::route('agregarRaza')->withErrors($validador);
+        }
+        else{
+        
         $buscaRaza = Raza::where('nombre','=',$data['nombre'])->first();
         
-        if(empty($buscaRaza))
-        {    
-        $raza = new Raza();
-        $raza->nombre = $data['nombre'];
-        $raza->descripcion = $data['descripcion'];
-        $raza->especie_id = $data['tipo'];
-        $raza->save();
-        return Redirect::route('agregarRaza')->with('message','raza_exito'); 
-        }
-        else
-        {
-          return Redirect::route('agregarRaza')->with('message','raza_existe');  
-        }
-        
+            if(empty($buscaRaza))
+            {    
+            $raza = new Raza();
+            $raza->nombre = $data['nombre'];
+            $raza->descripcion = $data['descripcion'];
+            $raza->especie_id = $data['tipo'];
+            $raza->save();
+            return Redirect::route('agregarRaza')->with('message','raza_exito'); 
+            }
+            else
+            {
+              return Redirect::route('agregarRaza')->with('message','raza_existe');  
+            }
+         }
         }    
      public function buscar(){
          

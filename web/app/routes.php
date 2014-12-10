@@ -57,7 +57,7 @@ Route::post('/ingreso', array('uses' => 'IngresoController@crearRegistro'));
 
 Route::post('/login', array('uses' => 'LoginController@validaLogin'));
 
-Route::post('busqueda/folio/buscarFolio/resultadoFolio', array('uses' => 'FolioController@busqueda'));
+Route::post('busqueda/folio/buscarFolio/resultadoFolio', array('as' => 'resultadoFolio','uses' => 'FolioController@busqueda'));
 
 Route::post('busqueda/propietario/buscarPropietario/resultadoRut', array('uses' => 'PropietarioController@busqueda'));
 
@@ -126,7 +126,7 @@ Route::get('/mantenedor/propietario/editarPropietario', array('before' => 'auth'
     return View::make('mantenedor.propietario.editarPropietario',compact('selected','combobox'));
 }));
 
-Route::post('/editarPropietarioGuardar', array('uses' => 'EditarPropietarioController@editarRegistro'));
+Route::post('/editarPropietarioGuardar', array('as' => 'editarPropietarioGuardar', 'uses' => 'EditarPropietarioController@editarRegistro'));
 
 Route::get('borrarPropietario', 'PropietarioController@borrar');
 
@@ -147,9 +147,9 @@ Route::get('/mantenedor/profesional/buscarProfesionalMantenedor', array('before'
     return View::make('mantenedor.profesional.buscarProfesionalMantenedor');
 }));
 
-Route::post('mantenedor/propietario/resultadoProfesionalMantenedor', array('before' => 'auth','as' => 'resultadoProfesionalMantenedor','uses' => 'ProfesionalMantenedorController@busqueda'));
+Route::post('mantenedor/profesional/resultadoProfesionalMantenedor', array('before' => 'auth','as' => 'resultadoProfesionalMantenedor','uses' => 'ProfesionalMantenedorController@busqueda'));
 
-Route::get('/mantenedor/propietario/editarProfesional', array('before' => 'auth','as' => 'editarProfesional', function()
+Route::get('/mantenedor/profesional/editarProfesional', array('before' => 'auth','as' => 'editarProfesional', function()
 {
     $comunas = Provincia::find(25)->comunas->lists('nombre','id');
     $combobox = array(0 => "Seleccione una comuna ") + $comunas;
@@ -157,6 +157,8 @@ Route::get('/mantenedor/propietario/editarProfesional', array('before' => 'auth'
     
     return View::make('mantenedor.profesional.editarProfesional',compact('selected','combobox'));
 }));
+
+Route::post('/editarProfesionalGuardar', array('as' => 'editarProfesionalGuardar', 'uses' => 'EditarProfesionalController@editarRegistro'));
 
 Route::get('/medicamentos/agregarMedicamento', array('before' => 'auth','as' => 'agregarMedicamento', function()
 {
@@ -183,6 +185,7 @@ Route::get('/agenda/agregarHorarioPeluqueria', array('before' => 'auth','as' => 
     $profesionales = Profesional::where('tipo_id','=','2')->lists('nombres','id');
     $combobox = array(0 => "Seleccione un profesional ") + $profesionales;
     $selected = array();
+    Session::put('tipohorario',2);
  
     return View::make('agenda.agregarHorarioPeluqueria',compact('selected','combobox'));   
 }));
@@ -192,6 +195,7 @@ Route::get('/agenda/agregarHorarioVeterinaria', array('before' => 'auth','as' =>
     $profesionales = Profesional::where('tipo_id','=','1')->lists('nombres','id');
     $combobox = array(0 => "Seleccione un profesional ") + $profesionales;
     $selected = array();
+     Session::put('tipohorario',1);
  
     return View::make('agenda.agregarHorarioVeterinaria',compact('selected','combobox'));   
 }));

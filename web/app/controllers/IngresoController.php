@@ -10,41 +10,69 @@ class IngresoController extends BaseController {
       
         $buscaPropietario = Propietario::where('rut','=',$rut)->pluck('id');
         
+        $reglas = array('nombres'           => 'alpha_spaces|required|min:4|max:80', 
+                        'apellidos'         => 'alpha_spaces|required|min:4|max:80', 
+                        'direccion'         => 'required',
+                        'correo'            => 'email|unique:propietarios,email' ,
+                        'fono'              => 'digits:8',
+                        'genero'            => 'boolean',
+                        'nombre_mascota'    => 'alpha_spaces|required|min:4|max:40',
+                        'fecha_nac_mascota' => 'before:'.date("d-m-Y")
+            );      
         
+        $validador = Validator::make($data, $reglas);
         
-        if( empty($buscaPropietario) )
-        { 
-        $propietario = New Propietario();
-        $propietario->rut = $rut;    
-        $propietario->nombres = $data['nombres'];
-        $propietario->apellidos = $data['apellidos'];      
-        $propietario->genero = $data['genero'];
-        $propietario->direccion = $data['direccion'];
-        $propietario->comuna_id = $data['comunas'];;
-        $propietario->email = $data['correo'];
-        $propietario->telefono = $data['fono'];
-        $propietario->save();
-        $idpropietario = $propietario->id ;
+        if($validador->fails()){
+           return Redirect::route('registro')->withErrors($validador);
         }
-        else
-        {
-          $idpropietario = $buscaPropietario;
+        else if($data['comunas'] == 0){
+           return Redirect::route('registro')->with('message','no_comuna'); 
         }
+        else if($data['especie'] == 0){
+           return Redirect::route('registro')->with('message','no_especie'); 
+        }
+        else if(($data['razas'] == 0) || ($data['razas'] == '')){
+           return Redirect::route('registro')->with('message','no_raza'); 
+        }
+        else{
+            
         
-        
-        $mascota = New Mascota();
-        $mascota->nombre = $data['nombre_mascota'];
-        $mascota->fecha_nacimiento = $data['fecha_nac_mascota'];
-        $mascota->propietario_id = $idpropietario;
-        $mascota->genero = $data['sexo'];
-        $mascota->raza_id = $data['razas'];
-        $mascota->comentario = $data['comentario'];
-        $mascota->save();
-        
+            if( empty($buscaPropietario) )
+            { 
+            $propietario = New Propietario();
+            $propietario->rut = $rut;    
+            $propietario->nombres = $data['nombres'];
+            $propietario->apellidos = $data['apellidos'];      
+            $propietario->genero = $data['genero'];
+            $propietario->direccion = $data['direccion'];
+            $propietario->comuna_id = $data['comunas'];;
+            $propietario->email = $data['correo'];
+            $propietario->telefono = $data['fono'];
+            $propietario->save();
+            $idpropietario = $propietario->id ;
+            }
+            else
+            {
+              $idpropietario = $buscaPropietario;
+            }
 
 
-        echo "<script>alert('Registro Exitoso!'); window.location='/Fossey/web/public/home'; </script>";
-        
+
+            $mascota = New Mascota();
+            $mascota->nombre = $data['nombre_mascota'];
+            $mascota->fecha_nacimiento = $data['fecha_nac_mascota'];
+            $mascota->propietario_id = $idpropietario;
+            $mascota->genero = $data['sexo'];
+            $mascota->raza_id = $data['razas'];
+            $mascota->comentario = $data['comentario'];
+            $mascota->save();
+
+
+
+            return Redirect::route('home')->with('message','registro_ok'); 
+
     }
+    
+  }
 
 }

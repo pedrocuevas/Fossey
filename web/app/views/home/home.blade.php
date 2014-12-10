@@ -8,6 +8,14 @@ Inicio
 
 @section('contenido')
 
+@if(!empty(Session::get('message')))
+    @if(Session::get('message') == 'registro_ok')
+       <script>
+          alert("Registro realizado con éxito");
+       </script>
+    @endif
+@endif
+
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading">

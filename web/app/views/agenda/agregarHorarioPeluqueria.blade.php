@@ -11,16 +11,22 @@ Agregar Horario Peluqueria
 @section('contenido')
 
 
-<?php if (empty(Session::get('message')))
-         $message = 'prueba';
-     else
-         $message = Session::get('message');
-?>
-
-@if($message == 'existe_horario')
-<script>
-    alert("Ya existe un horario para el profesional");
-</script>
+@if(!empty(Session::get('message')))
+    @if(Session::get('message') == 'existe_horario')
+    <script>
+        alert("Ya existe un horario para el profesional");
+    </script>
+    @endif
+    @if(Session::get('message') == 'no_profesional')
+    <script>
+        alert("Debe seleccionar un  profesional");
+    </script>
+    @endif
+    @if(Session::get('message') == 'hora_invalida')
+    <script>
+        alert("Debe seleccionar un horario válido");
+    </script>
+    @endif
 @endif
 
 

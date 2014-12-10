@@ -7,22 +7,30 @@ Agregar Raza
 
 @section('contenido')
 
-<?php
-if (empty(Session::get('message')))
-    $message = 'prueba';
+@if(!empty(Session::get('message')))
+    @if(Session::get('message') == 'raza_existe')
+    <script>
+        alert("La raza ingresada ya existe");
+    </script>
+    @endif
+    @if(Session::get('message') == 'raza_exito')
+    <script>
+        alert("Raza ingresada con éxito");
+    </script>
+    @endif
+@endif
 
-    else$message = Session::get('message');
-?>
-@if($message == 'raza_existe')
-<script>
-    alert("La raza ingresada ya existe");
-</script>
-@endif
-@if($message == 'raza_exito')
-<script>
-    alert("Raza ingresada con éxito");
-</script>
-@endif
+ @if ($errors->any())
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Por favor corrige los siguentes errores:</strong>
+      <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+      </ul>
+    </div>
+ @endif
 
 <div class="panel panel-default">
     <div class="panel-heading">

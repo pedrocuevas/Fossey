@@ -11,6 +11,14 @@ Buscar Registros por Propietario
 
 @section('contenido')
 
+@if(!empty(Session::get('message')))
+    @if(Session::get('message') == 'no_propietario')
+    <script>
+    alert("'No se encontraron mascotas coincidentes con el rut ingresado")
+    </script>
+    @endif
+@endif
+
 {{ Form::open(array('url' => '/busqueda/propietario/buscarPropietario/resultadoRut')) }}
 <div class="input-group custom-search-form">
     <input name="rut" id="rut" type="text" class="form-control" placeholder="Ingrese Rut del Propietario" >

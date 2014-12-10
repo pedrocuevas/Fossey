@@ -14,7 +14,7 @@ class PropietarioController extends BaseController {
         
         
         if(empty($propietario)){
-          echo "<script>alert('No se encontraron mascotas coincidentes con el rut ingresado'); window.location='buscarPropietario'; </script>";
+          return Redirect::route('buscarPropietario')->with('message','no_propietario');  
         }
           else{
             Session::put('emailpropietario', $propietario->email);

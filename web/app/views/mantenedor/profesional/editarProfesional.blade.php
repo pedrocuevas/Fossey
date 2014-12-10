@@ -11,7 +11,18 @@ Editar Registro
 
 @section('contenido')
 
-
+ @if ($errors->any())
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Por favor corrige los siguentes errores:</strong>
+      <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+      </ul>
+    </div>
+ @endif
+  
 <div class="panel panel-default">
     <div class="panel-heading">
         <i class="fa fa-user fa-fw"></i> Datos del Profesional
@@ -22,7 +33,7 @@ Editar Registro
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-8">
-                {{ Form::open(array('url' => '/editarPropietarioGuardar')) }}
+                {{ Form::open(array('route' => 'editarProfesionalGuardar')) }}
                 <div class="form-group">
                     {{Form::label('nombres', 'Nombre Completo:')}}
                     {{Form::text('nombres',Session::get('nombres_pro'),array('class' => 'form-control', 'placeholder' => 'Ingrese nombre completo aquí', 'required' => 'required'))}}

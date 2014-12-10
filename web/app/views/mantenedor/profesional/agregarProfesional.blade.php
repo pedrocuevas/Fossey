@@ -11,16 +11,25 @@ Agregar Profesional
 
 @section('contenido')
 
-<?php if (empty(Session::get('message')))
-    $message = 'prueba';
-
-    else$message = Session::get('message');
-?>
-@if($message == 'rut_existe')
-<script>
-    alert("El Rut ingresado ya existe");
-</script>
+@if(!empty(Session::get('message')))
+    @if(Session::get('message') == 'rut_existe')
+    <script>
+        alert("El Rut ingresado ya existe");
+    </script>
+    @endif
 @endif
+
+ @if ($errors->any())
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Por favor corrige los siguentes errores:</strong>
+      <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+      </ul>
+    </div>
+  @endif
 
 <div class="panel panel-default">
     <div class="panel-heading">

@@ -7,16 +7,29 @@ Agregar Medicamento
 
 @section('contenido')
 
-<?php if(empty(Session::get('message')))$message='prueba';else$message=Session::get('message');?>
-@if($message == 'medicamento_existe')
-<script>
-alert("Ya existe un medicamento con ese nombre")
-</script>
-@elseif($message == 'medicamento_add')
-<script>
-alert("Medicamento guardado con exito!")
-</script>
+@if(!empty(Session::get('message')))
+    @if(Session::get('message') == 'medicamento_existe')
+    <script>
+    alert("Ya existe un medicamento con ese nombre")
+    </script>
+    @elseif(Session::get('message') == 'medicamento_add')
+    <script>
+    alert("Medicamento guardado con exito!")
+    </script>
+    @endif
 @endif
+
+ @if ($errors->any())
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Por favor corrige los siguentes errores:</strong>
+      <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+      </ul>
+    </div>
+ @endif
 
 
 <div class="panel panel-default">

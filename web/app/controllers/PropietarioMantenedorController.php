@@ -14,7 +14,7 @@ class PropietarioMantenedorController extends BaseController {
         
         
         if(empty($propietario)){
-          echo "<script>alert('No se encontró propietario'); window.location='/Fossey/web/public/mantenedor/propietario/buscarPropietarioMantenedor'; </script>";
+            return Redirect::route('buscarPropietarioMantenedor')->with('message','no_propietario');
         }
           else{
               

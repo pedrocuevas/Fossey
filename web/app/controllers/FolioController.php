@@ -4,19 +4,22 @@ class FolioController extends BaseController {
 
     public function busqueda() {
 
-        $folio = Input::get('folio');
-
-        $mascota = Mascota::find($folio);
+       $data = Input::all();       
+       $reglas = array('folio' => 'required|numeric');      
+        
+       $validador = Validator::make($data, $reglas);
        
-   
-       
-       if(empty($mascota)){
-         echo  "<script>alert('No se encontraron mascotas coincidentes con el folio ingresado'); window.location='buscarFolio'; </script>";
+       if($validador->fails()){
+          return Redirect::route('buscarFolio')->withErrors($validador);
        }
        else{
-
-
-          return Redirect::to('ficha/verFicha'.$folio);
+            $mascota = Mascota::find($data['folio']);
+            if(empty($mascota)){
+              return Redirect::route('buscarFolio')->with('message','folio_inexistente');  
+            }
+            else{
+               return Redirect::to('ficha/verFicha'.$folio);
+            }
        }
        
     }
