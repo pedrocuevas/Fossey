@@ -1,40 +1,33 @@
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Tomar Hora</title>
-        {{ HTML::style('css/datepicker.css') }}
-        {{ HTML::style('css/bootstrap.min.css') }}
-        {{ HTML::script('js/jquery-1.10.2.js') }}
-        {{ HTML::script('js/bootstrap-datepicker.js') }}
-        {{ HTML::script('js/jquery.Rut.js') }}
-        {{ HTML::script('js/rut.js') }}
-
-    </head>
-    <body>
     
-        <?php if (empty(Session::get('message')))
-                  $message = 'prueba';
-             else
-                 $message = Session::get('message');
-        ?>
-         @if($message == 'reserva_exitosa')
+@extends('layout2')
+
+@section('titulo')
+Tomar Hora
+@endsection
+
+@section('cabecera')
+  {{ HTML::style('css/datepicker.css') }}
+  {{ HTML::script('js/bootstrap-datepicker.js') }}
+@endsection
+
+@section('contenido')     
+    
+ @if(!empty(Session::get('message')))
+         @if(Session::get('message') == 'reserva_exitosa')
            <script>
               alert("Reserva realizada con éxito");
            </script>
-         @endif
-         @if($message == 'no_hora')
+         @elseif(Session::get('message') == 'no_hora')
            <script>
               alert("No existen horas disponibles para este día");
            </script>
          @endif
-        <div class="container">
-            <div class="row">
+ @endif
+ 
                 <div class="col-lg-4"> 
                     {{ Form::open(array('route' => 'verHorario')) }}
                     <div class="hero-unit">
-                        <input  name="fecha" type="text"  placeholder="click to show datepicker"  id="example1">
+                        <input  name="fecha" type="text"  placeholder="click para mostrar fecha"  id="example1">
                     </div>
                 </div>
                 <div class="col-lg-4"> 
@@ -46,17 +39,15 @@
                     </select>
                         
                 </div>
-            </div>
+
             <div class="row">   
           <div class="col-lg-12">         
             <p><button type="Submit" class="btn btn-primary btn-lg">Ver Horas</button></p>
-   
         </div> 
                 {{ Form::close(); }}
             </div>        
-        </div>
+
         <!-- Load jQuery and bootstrap datepicker scripts -->
-        <script src="js/jquery-1.9.1.min.js"></script>
         <script src="js/bootstrap-datepicker.js"></script>
         <script type="text/javascript">
 // When the document is ready
@@ -93,12 +84,11 @@ $(document).ready(function() {
 
 });
         </script>
-        {{ HTML::script('js/bootstrap.min.js') }}
-        
-      
-    </body>     
 
-</html>
+ 
+           
+
+@endsection
 
 
 
