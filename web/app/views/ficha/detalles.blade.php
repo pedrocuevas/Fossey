@@ -19,15 +19,15 @@ Ficha de {{Session::get('nombremascota')}}
     <div class="well"> 
         <div class="row">
             <div class="col-lg-6">          
-                <h1>Nombre: {{Session::get('nombremascota')}}</h1>
+                <h2>Nombre: {{Session::get('nombremascota')}}</h2>
             </div>
             <div class="col-lg-6">
-                <h1>Peso: {{$peso}} Kg.</h1>     
+                <h2>Peso: {{$peso}} Kg.</h2>     
             </div>
         </div>   
         <div class="row">
             <div class="col-lg-6">          
-                <h1>Fecha de Atención: {{$fecha_atencion}}</h1>
+                <h2>Fecha de Atención: {{$fecha_atencion}}</h2>
             </div>
         </div>
     </div> 

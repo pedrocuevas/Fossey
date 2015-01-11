@@ -55,7 +55,7 @@ Ingresar Nuevo Registro
                 {{ Form::open(array('url' => '/ingreso')) }}
                 <div class="form-group">
                     {{Form::label('rut', 'RUT:')}}
-                    {{Form::text('rut',null,array('class' => 'form-control', 'placeholder' => '1234567k', 'id' => 'rut', 'required' => 'required'))}}
+                    {{Form::text('rut',null,array('class' => 'form-control', 'placeholder' => '1234567k','maxlength' => '12', 'id' => 'rut', 'required' => 'required'))}}
                     <p class="help-block">Ingrese el rut del propietario</p>
                 </div>
             </div>
@@ -112,8 +112,8 @@ Ingresar Nuevo Registro
             <div class="col-lg-4">
                 <div class="form-group">
                     {{Form::label('fono', 'Fono de contacto:')}}
-                    {{Form::text('fono',null,array('class' => 'form-control', 'placeholder' => 'Ingrese teléfono de contacto', 'required' => 'required', 'maxlength' => '8'))}}
-                    <p class="help-block">Ingrese el teléfono sin código de área.</p>
+                    {{Form::text('fono',null,array('class' => 'form-control', 'placeholder' => 'Ingrese teléfono de contacto', 'required' => 'required', 'maxlength' => '11'))}}
+                    <p class="help-block">Ej: 09-12345678 o 02-1234567</p>
                 </div>                
             </div>
         </div>       

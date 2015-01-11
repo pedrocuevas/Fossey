@@ -9,6 +9,17 @@ Ficha de {{Session::get('nombremascota')}}
 
 @section('contenido')
 
+ @if ($errors->any())
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Por favor corrige los siguentes errores:</strong>
+      <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+      </ul>
+    </div>
+ @endif
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -92,7 +103,7 @@ Ficha de {{Session::get('nombremascota')}}
             <div class="col-lg-4">
                 <div class="form-group">
                     <label>Peso:</label>
-                    <input name="peso" id="peso" class="form-control"   maxlength="4" required>
+                    <input name="peso" id="peso" class="form-control"   maxlength="3" required>
                     <p class="help-block">Ingrese el peso de la mascota en KG</p>
                 </div>
             </div>

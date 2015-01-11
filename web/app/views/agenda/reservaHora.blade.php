@@ -15,7 +15,7 @@ Reservar Hora
     <div class="col-lg-6"> 
         {{ Form::open(array('route' => 'reservarHora')) }}
         {{Form::label('rut', 'Rut:')}}
-        {{Form::text('rut',null,array('class' => 'form-control', 'placeholder' => 'Ingrese rut', 'required' => 'required', 'id' => 'rut'))}}
+        {{Form::text('rut',null,array('class' => 'form-control', 'placeholder' => 'Ingrese rut', 'maxlength' => '12', 'required' => 'required', 'id' => 'rut'))}}
     </div>
     <div class="col-lg-6"> 
         {{Form::label('nombres', 'Nombre Completo:')}}

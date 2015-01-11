@@ -6,7 +6,17 @@ class AtencionController extends BaseController {
 
         $data = Input::all(); 
        
-
+        $reglas = array(
+                'peso' => 'numeric|digits_between:1,3|required',
+                'fecha_control' => 'after:'.date("d-m-Y")
+        );
+        
+        $validador = Validator::make($data, $reglas);
+        
+        if($validador->fails()){
+            return Redirect::to('ficha/verFicha'.$id)->withErrors($validador);
+        }
+        else{
         $atencion = New Atencion();
         $atencion->fecha = $data['fecha'];    
         $atencion->descripcion = $data['descripcion'];
@@ -14,7 +24,7 @@ class AtencionController extends BaseController {
         $atencion->profesional_id = '1';
         $atencion->mascota_id = $id;
         $atencion->save();
-       
+        }
        if(isset($data['notificar']))
        {    
             if($data['notificar'] == 1)

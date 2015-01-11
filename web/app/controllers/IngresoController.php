@@ -14,7 +14,7 @@ class IngresoController extends BaseController {
                         'apellidos'         => 'alpha_spaces|required|min:4|max:80', 
                         'direccion'         => 'required',
                         'correo'            => 'email|unique:propietarios,email' ,
-                        'fono'              => 'digits:8',
+                        'fono'              => array('regex:/^[9|2]-[5-9]([0-9]{6,7})$/'),
                         'genero'            => 'boolean',
                         'nombre_mascota'    => 'alpha_spaces|required|min:4|max:40',
                         'fecha_nac_mascota' => 'before:'.date("d-m-Y")
