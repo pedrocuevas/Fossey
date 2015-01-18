@@ -12,12 +12,29 @@
 */
 
 
-
+//--------------LOGIN-----------------------------------------------------
 Route::get('/', function()
 {
     
 	return View::make('login.login');
 });
+
+Route::get('/logout', array('as' => 'logout', function()
+{
+    Auth::logout();
+    return Redirect::to('/');
+}));
+
+
+
+Route::post('/login', array('uses' => 'LoginController@validaLogin'));
+
+//---------------FIN DE LOGIN-----------------------------------------------
+
+
+
+
+//----------------HOME---------------------------------------------------
 
 Route::get('/home', array('before' => 'auth', 'as' => 'home', function()
 {
@@ -25,6 +42,13 @@ Route::get('/home', array('before' => 'auth', 'as' => 'home', function()
     Session::put('totalmascotas',$count);
 	return View::make('home.home');
 }));
+
+//-------------FIN DE HOME--------------------------------------------------
+
+
+
+
+//-------------MÓDULO DE REGISTRO DE PACIENTES-----------------------------------
 
 Route::get('/registro/registro', array('before' => 'auth','as' => 'registro', function()
 {
@@ -37,6 +61,17 @@ Route::get('/registro/registro', array('before' => 'auth','as' => 'registro', fu
     return View::make('registro.registro', compact('selected','combobox'));
 }));
 
+Route::post('/ingreso', array('uses' => 'IngresoController@crearRegistro'));
+
+Route::post('ficha/registroAtencion{id}', array('uses' => 'AtencionController@crearRegistro'));
+
+//----------------FIN DE MÓDULO DE REGISTRO DE PACIENTES--------------------------------------
+
+
+
+
+//---------------MÓDULO DE BÚSQUEDA-------------------------------------------------------------
+
 Route::get('/busqueda/propietario/buscarPropietario', array('before' => 'auth','as' => 'buscarPropietario', function()
 {
     return View::make('busqueda.propietario.buscarPropietario');
@@ -46,16 +81,6 @@ Route::get('/busqueda/folio/buscarFolio', array('before' => 'auth','as' => 'busc
 {
     return View::make('busqueda.folio.buscarFolio');
 }));
-
-Route::get('/logout', array('as' => 'logout', function()
-{
-    Auth::logout();
-    return Redirect::to('/');
-}));
-
-Route::post('/ingreso', array('uses' => 'IngresoController@crearRegistro'));
-
-Route::post('/login', array('uses' => 'LoginController@validaLogin'));
 
 Route::post('busqueda/folio/buscarFolio/resultadoFolio', array('as' => 'resultadoFolio','uses' => 'FolioController@busqueda'));
 
@@ -91,7 +116,7 @@ Session::put('nombremascota', $mascota->nombre);
 
 Route::get('razas', 'cargaRazasController@razas');
 
-Route::post('ficha/registroAtencion{id}', array('uses' => 'AtencionController@crearRegistro'));
+
 
 Route::get('ficha/verAtencion{id}', array('as' => 'verAtencion', function($id)
 {
@@ -109,6 +134,12 @@ Route::get('ficha/verAtencion{id}', array('as' => 'verAtencion', function($id)
  return View::make('ficha.detalles', $data);    
 }));
 
+//--------------FIN DE MÓDULO DE BÚSQUEDA--------------------------------------------
+
+
+
+
+//-------------------MÓDULO DE MANTENEDORES---------------------------------------------------
 
 Route::get('/mantenedor/propietario/buscarPropietarioMantenedor', array('before' => 'auth','as' => 'buscarPropietarioMantenedor', function()
 {
@@ -160,6 +191,35 @@ Route::get('/mantenedor/profesional/editarProfesional', array('before' => 'auth'
 
 Route::post('/editarProfesionalGuardar', array('as' => 'editarProfesionalGuardar', 'uses' => 'EditarProfesionalController@editarRegistro'));
 
+Route::get('/mantenedor/raza/agregarRaza', array('before' => 'auth','as' => 'agregarRaza', function()
+{
+            return View::make('mantenedor.raza.agregarRaza');
+}));
+
+Route::get('/mantenedor/raza/buscarRaza', array('before' => 'auth','as' => 'buscarRaza', function()
+{
+            return View::make('mantenedor.raza.buscarRaza');
+}));
+
+Route::post('/mantenedor/raza/guardarRaza', array('as' => 'guardarRaza','uses' => 'RazaMantenedorController@agregar'));
+
+Route::post('/mantenedor/raza/buscarRaza', array('as' => 'resultadoRaza','uses' => 'RazaMantenedorController@buscar'));
+
+Route::get('mantenedor/raza/borrarRaza', array('as' => 'borrarRaza','uses' => 'RazaMantenedorController@borrar'));
+
+Route::get('/mantenedor/raza/editarRaza', array('before' => 'auth','as' => 'editarRaza', function()
+{
+            return View::make('mantenedor.raza.editarRaza');
+}));
+
+Route::post('/mantenedor/raza/guardarEditorRaza', array('as' => 'guardarEditorRaza','uses' => 'RazaMantenedorController@editar'));
+
+//------------------------FIN DE MANTENEDORES-----------------------------------------------------------------------
+
+
+
+//-----------------------MÓDULO DE MEDICAMENTOS-----------------------------------------------------------------
+
 Route::get('/medicamentos/agregarMedicamento', array('before' => 'auth','as' => 'agregarMedicamento', function()
 {
     return View::make('medicamentos.agregarMedicamento');
@@ -179,6 +239,11 @@ Route::post('medicamento/Dosis', array('before' => 'auth','as' => 'calculoDosis'
 
 Route::post('/ajax', array( 'as' => 'ajax', 'uses' => 'AjaxController@buscar'));
 
+//-----------------FIN DE MÓDULO DE MEDICAMENTOS-------------------------------------------------------------------
+
+
+
+//------------------MÓDULO DE AGENDAMIENTO DE HORAS------------------------------------------------------------------------
 
 Route::get('/agenda/agregarHorarioPeluqueria', array('before' => 'auth','as' => 'agregarHorarioPeluqueria', function()
 {
@@ -223,25 +288,5 @@ return View::make('agenda.reservaHora', $datos);
 
 Route::post('reservarHora', array('as' => 'reservarHora','uses' => 'TomarHoraController@reservar'));
 
-Route::get('/mantenedor/raza/agregarRaza', array('before' => 'auth','as' => 'agregarRaza', function()
-{
-            return View::make('mantenedor.raza.agregarRaza');
-}));
+//-------------------------FIN DEL MÓDULO DE AGENDAMIENTO DE HORAS----------------------------------------------
 
-Route::get('/mantenedor/raza/buscarRaza', array('before' => 'auth','as' => 'buscarRaza', function()
-{
-            return View::make('mantenedor.raza.buscarRaza');
-}));
-
-Route::post('/mantenedor/raza/guardarRaza', array('as' => 'guardarRaza','uses' => 'RazaMantenedorController@agregar'));
-
-Route::post('/mantenedor/raza/buscarRaza', array('as' => 'resultadoRaza','uses' => 'RazaMantenedorController@buscar'));
-
-Route::get('mantenedor/raza/borrarRaza', array('as' => 'borrarRaza','uses' => 'RazaMantenedorController@borrar'));
-
-Route::get('/mantenedor/raza/editarRaza', array('before' => 'auth','as' => 'editarRaza', function()
-{
-            return View::make('mantenedor.raza.editarRaza');
-}));
-
-Route::post('/mantenedor/raza/guardarEditorRaza', array('as' => 'guardarEditorRaza','uses' => 'RazaMantenedorController@editar'));

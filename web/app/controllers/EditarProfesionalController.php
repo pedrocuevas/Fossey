@@ -5,12 +5,12 @@ class EditarProfesionalController extends BaseController {
     public function editarRegistro() {
 
         $data = Input::all(); 
-        $profesional = Profesional::find(Session::get('id'));
+        $profesional = Profesional::find(Session::get('id_pro'));
         
         $reglas = array('nombres'           => 'alpha_spaces|required|min:4|max:80',  
                         'direccion'         => 'required',
                         'correo'            => 'email' ,
-                        'fono'              => 'digits:8'
+                         'fono'              => array('regex:/^[9|2]-[5-9]([0-9]{6,7})$/')
                  );    
         $validador = Validator::make($data, $reglas);
          
@@ -21,12 +21,12 @@ class EditarProfesionalController extends BaseController {
 
                 $profesional->nombres = $data['nombres'];  
                 $profesional->direccion = $data['direccion'];
-                $profesonal->comuna_id = $data['comunas'];;
+                $profesional->comuna_id = $data['comunas'];
                 $profesional->email = $data['correo'];
                 $profesional->telefono = $data['fono'];
                 $profesional->save();
 
-                return Redirect::to('buscarProfesionalMantenedor')->with('message','ok_update');
+                return Redirect::route('buscarProfesionalMantenedor')->with('message','ok_update');
         }
     }
 

@@ -113,7 +113,7 @@ Ingresar Nuevo Registro
                 <div class="form-group">
                     {{Form::label('fono', 'Fono de contacto:')}}
                     {{Form::text('fono',null,array('class' => 'form-control', 'placeholder' => 'Ingrese teléfono de contacto', 'required' => 'required', 'maxlength' => '11'))}}
-                    <p class="help-block">Ej: 09-12345678 o 02-1234567</p>
+                    <p class="help-block">Ej: 9-12345678 o 2-1234567</p>
                 </div>                
             </div>
         </div>       

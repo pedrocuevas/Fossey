@@ -66,8 +66,8 @@ Editar Registro
             <div class="col-lg-4">
                 <div class="form-group">
                     {{Form::label('fono', 'Fono de contacto:')}}
-                    {{Form::text('fono',Session::get('fono_pro'),array('class' => 'form-control', 'placeholder' => 'Ingrese número de contacto', 'maxlength' => '8'))}}      
-                    <p class="help-block">Ingrese el teléfono sin código de área.</p>
+                    {{Form::text('fono',Session::get('fono_pro'),array('class' => 'form-control', 'placeholder' => 'Ingrese número de contacto', 'maxlength' => '11'))}}      
+                    <p class="help-block">Ej: 9-12345678 o 2-1234567</p>
                 </div>
             </div>
         </div>  

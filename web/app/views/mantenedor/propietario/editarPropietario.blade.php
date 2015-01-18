@@ -75,8 +75,8 @@ Editar Registro
                 </div>
                  <div class="form-group">
                     <label>Fono de contacto:</label>
-                    <input name="fono" class="form-control" value="{{Session::get('fono')}}"  maxlength="8">
-                    <p class="help-block">Ingrese el teléfono sin código de área.</p>
+                    <input name="fono" class="form-control" value="{{Session::get('fono')}}"  maxlength="11">
+                    <p class="help-block">Ej: 9-12345678 o 2-1234567</p>
                 </div>
 
             </div>

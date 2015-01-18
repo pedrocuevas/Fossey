@@ -11,7 +11,7 @@ class EditarPropietarioController extends BaseController {
                         'apellidos'         => 'alpha_spaces|required|min:4|max:80', 
                         'direccion'         => 'required',
                         'correo'            => 'email' ,
-                        'fono'              => 'numeric|digits:8'
+                        'fono'              => array('regex:/^[9|2]-[5-9]([0-9]{6,7})$/')
                  );    
         $validador = Validator::make($data, $reglas);
          
@@ -28,7 +28,7 @@ class EditarPropietarioController extends BaseController {
                 $propietario->telefono = $data['fono'];
                 $propietario->save();
 
-                return Redirect::to('buscarPropietarioMantenedor')->with('message','ok_update');
+                return Redirect::route('buscarPropietarioMantenedor')->with('message','ok_update');
         }
     }
 
