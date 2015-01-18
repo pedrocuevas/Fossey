@@ -26,7 +26,7 @@ class TomarHoraController extends BaseController {
             $fin = $horarioProfesional->hora_fin;
             }
             else{
-                return Redirect::to('tomarHora');
+                return Redirect::to('tomarHora')->with('message','no_horario');
             }  
             
             for($i = 0 ; $i < ($fin-$inicio); $i++)
@@ -48,14 +48,17 @@ class TomarHoraController extends BaseController {
     
            
            
-           Session::put('fechareserva',$data['fecha']); 
+           Session::put('fechareserva',$data['fecha']);
+           
+            $profesional = Profesional::find($data['profesional']);
            
             $datos = array('inicio'      => $inicio ,
                             'fin'        => $fin,
                             'horainicio' => $horainicio[0],
                             'horafin'    => $horafin[0],
-                            'fecha'      => $data['fecha'], 
-                            'array'     => $array);
+                            'fecha'      => $data['fecha'],
+                            'nombre'     => $profesional->nombres,
+                            'array'      => $array);
             
             $lunes = $dias[0];
             $martes = $dias[1];
@@ -131,7 +134,7 @@ class TomarHoraController extends BaseController {
             
             $semana = array($lunes,$martes,$miercoles,$jueves,$viernes,$sabado,$domingo);
             
-           
+
             
             $fecha = explode('/',$data['fecha']);
             $dia = $fecha[0];

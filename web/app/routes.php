@@ -38,8 +38,12 @@ Route::post('/login', array('uses' => 'LoginController@validaLogin'));
 
 Route::get('/home', array('before' => 'auth', 'as' => 'home', function()
 {
-    $count = Mascota::all()->count();
-    Session::put('totalmascotas',$count);
+    $mascotas = Mascota::all()->count();
+    Session::put('totalmascotas',$mascotas);
+    
+    $medicamentos = Medicamento::all()->count();
+    Session::put('totalmedicamentos',$medicamentos);
+    
 	return View::make('home.home');
 }));
 

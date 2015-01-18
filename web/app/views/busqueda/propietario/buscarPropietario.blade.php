@@ -16,6 +16,10 @@ Buscar Registros por Propietario
     <script>
     alert("'No se encontraron mascotas coincidentes con el rut ingresado")
     </script>
+    @elseif(Session::get('message') == 'registro_ok')
+    <script>
+    alert("Registro Exitoso")
+    </script>
     @endif
 @endif
 

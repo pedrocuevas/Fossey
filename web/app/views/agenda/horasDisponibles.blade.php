@@ -2,13 +2,14 @@
 @extends('layout2')
 
 @section('titulo')
-Horas Disponibles
+Horas Disponibles 
 @endsection
 
 
 
 @section('contenido')     
 
+<h3>Nombre del profesional: {{$nombre}}</h3>
 
 <div class="row">
     <div class="col-lg-12">

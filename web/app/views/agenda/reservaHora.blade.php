@@ -34,9 +34,14 @@ Reservar Hora
 </div>
 <div class="row">   
     <div class="col-lg-12">
-        {{Form::hidden('hora',$hora.":".$minutos.":".$segundos )}}   
-        <p><button type="Submit" class="btn btn-primary btn-lg">Enviar</button></p>
+        {{Form::hidden('hora',$hora.":".$minutos.":".$segundos )}}         
     </div> 
+ <div class="row">
+        <br>
+   <div class="col-lg-12">
+         <p><button type="Submit" class="btn btn-primary btn-lg">Enviar</button></p>
+   </div>
+ </div>
     {{ Form::close(); }}
 </div>        
 

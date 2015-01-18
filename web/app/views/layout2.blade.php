@@ -33,9 +33,9 @@
                         <h1 class="page-header">@yield('titulo',"Inicio")</h1>
                     </div>  <!-- /.row -->
                 </div>
-                <div class="row">                      
+                     
                         @yield('contenido')
-                </div>           
+        
             </div>    
 
         <!-- Core Scripts - Include with every page -->

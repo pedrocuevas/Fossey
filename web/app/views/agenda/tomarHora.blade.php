@@ -21,6 +21,10 @@ Tomar Hora
            <script>
               alert("No existen horas disponibles para este día");
            </script>
+         @elseif(Session::get('message') == 'no_horario')
+           <script>
+              alert("El profesional seleccionado no ha ingresado su horario");
+           </script>
          @endif
  @endif
  

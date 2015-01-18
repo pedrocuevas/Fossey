@@ -29,7 +29,9 @@ class AtencionController extends BaseController {
        {    
             if($data['notificar'] == 1)
             {
-                    Mail::send('emails.template', array('mascota' => Session::get('nombremascota'), 'fecha' => $data['fecha_control']), function($message)
+                 $fechasinformato = explode("-",$data['fecha_control']);
+                 $fechafinal = $fechasinformato[2]."-".$fechasinformato[1]."-".$fechasinformato[0];
+                    Mail::send('emails.template', array('mascota' => Session::get('nombremascota'), 'fecha' => $fechafinal), function($message)
                   {
                       $message->to(Session::get('emailpropietario'), Session::get('nombrespropietario').' '.Session::get('apellidospropietario'))->subject("Fecha Próximo Control de".' '.Session::get('nombremascota'));
                   });  
@@ -37,8 +39,8 @@ class AtencionController extends BaseController {
        }
 
 
-        echo "<script>alert('Registro Exitoso!'); window.location='/Fossey/web/public/busqueda/propietario/buscarPropietario' </script>";
-        
+       
+        return Redirect::route('buscarPropietario')->with('message','registro_ok');
     }
 
 }
