@@ -4,8 +4,15 @@ class PropietarioMantenedorController extends BaseController {
 
     public function busqueda() {
 
-        $rut = Input::get('rut');
-        $rutsindigito = substr($rut, 0, -2); 
+        $rut = Input::all();         
+        $reglas = array('rut' =>  'required');
+                
+        $validador = Validator::make($rut, $reglas);
+        
+        if($validador->fails()){
+             return Redirect::route('buscarPropietarioMantenedor')->withErrors($validador); 
+        } 
+        $rutsindigito = substr($rut['rut'], 0, -2); 
         $rut = str_replace(".", "", $rutsindigito);
 
         $propietario = Propietario::where('rut', '=', $rut)->first();

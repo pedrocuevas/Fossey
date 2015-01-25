@@ -13,9 +13,10 @@ Agregar Profesional
 
 @if(!empty(Session::get('message')))
     @if(Session::get('message') == 'rut_existe')
-    <script>
-        alert("El Rut ingresado ya existe");
-    </script>
+       <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Error!</strong> El rut ingresado ya existe
+        </div>
     @endif
 @endif
 

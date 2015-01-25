@@ -7,21 +7,18 @@ Buscar Raza
 
 @section('contenido')
 
-<?php
-if (empty(Session::get('message')))
-    $message = 'prueba';
-
-    else$message = Session::get('message');
-?>
-@if($message == 'ok_delete')
-<script>
-    alert("Registro borrado exitosamente");
-</script>
-@endif
-@if($message == 'editar_ok')
-<script>
-    alert("Registro modificado correctamente");
-</script>
+@if(!empty(Session::get('message')))
+    @if(Session::get('message') == 'ok_delete')
+       <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Completado!</strong> Registro borrado exitosamente
+        </div>
+    @elseif(Session::get('message') == 'editar_ok')
+       <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Completado!</strong> Registro modificado correctamente
+        </div>
+    @endif
 @endif
 
 <div class="panel panel-default">

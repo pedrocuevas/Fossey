@@ -18,7 +18,7 @@ class FolioController extends BaseController {
               return Redirect::route('buscarFolio')->with('message','folio_inexistente');  
             }
             else{
-               return Redirect::to('ficha/verFicha'.$folio);
+               return Redirect::to('ficha/verFicha'.$data['folio']);
             }
        }
        

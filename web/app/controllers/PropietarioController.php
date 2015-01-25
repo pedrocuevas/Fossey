@@ -4,14 +4,22 @@ class PropietarioController extends BaseController {
 
     public function busqueda() {
 
-        $rut = Input::get('rut');
-        $rutsindigito = substr($rut, 0, -2); 
-        $rut = str_replace(".", "", $rutsindigito);
+        $rut = Input::all();         
+        $reglas = array('rut' =>  'required');
+                
+        $validador = Validator::make($rut, $reglas);
+        
+        if($validador->fails()){
+             return Redirect::route('buscarPropietario')->withErrors($validador); 
+        }  
+        
+        $rutsindigito = substr($rut['rut'], 0, -2); 
+        $rutfinal = str_replace(".", "", $rutsindigito);
 
-        $propietario = Propietario::where('rut', '=', $rut)->first();
+        $propietario = Propietario::where('rut', '=', $rutfinal)->first();
         
         
-        
+
         
         if(empty($propietario)){
           return Redirect::route('buscarPropietario')->with('message','no_propietario');  
@@ -31,7 +39,7 @@ class PropietarioController extends BaseController {
            
            $propietario = Propietario::find(Session::get('id'));
            $propietario->delete();
-           return Redirect::to('buscarPropietarioMantenedor')->with('message','ok_delete');
+           return Redirect::route('buscarPropietarioMantenedor')->with('message','ok_delete');
        }
        
     }

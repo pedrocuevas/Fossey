@@ -14,17 +14,20 @@ Tomar Hora
     
  @if(!empty(Session::get('message')))
          @if(Session::get('message') == 'reserva_exitosa')
-           <script>
-              alert("Reserva realizada con éxito");
-           </script>
+       <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Completado!</strong> Reserva realizada con éxito
+        </div>
          @elseif(Session::get('message') == 'no_hora')
-           <script>
-              alert("No existen horas disponibles para este día");
-           </script>
+       <div class="alert alert-info alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Lo Sentimos!</strong> No existen horas disponibles para este día
+        </div>
          @elseif(Session::get('message') == 'no_horario')
-           <script>
-              alert("El profesional seleccionado no ha ingresado su horario");
-           </script>
+       <div class="alert alert-info alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Lo Sentimos!</strong> El profesional seleccionado no ha ingresado su horario
+        </div>
          @endif
  @endif
  

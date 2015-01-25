@@ -31,18 +31,18 @@ Ficha de {{Session::get('nombremascota')}}
         <div class="well"> 
             <div class="row">
                 <div class="col-lg-6">          
-                    <h1>Nombre: {{Session::get('nombremascota')}}</h1>
+                    <h3>Nombre: <strong>{{Session::get('nombremascota')}}</strong></h3>
                 </div>
                 <div class="col-lg-6">
-                    <h1>Especie: {{$especie}}</h1>     
+                    <h3>Especie: <strong>{{$especie}}</strong></h3>     
                 </div>
             </div>   
             <div class="row">
                 <div class="col-lg-6">          
-                    <h1>Raza: {{$raza}}</h1>
+                    <h3>Raza: <strong>{{$raza}}</strong></h3>
                 </div>
                 <div class="col-lg-6">
-                    <h1>Fecha de Nacimiento: {{$fechanac}}</h1>     
+                    <h3>Fecha de Nacimiento: <strong>{{$fechanac}}</strong></h3>     
                 </div>
             </div>
         </div> 
@@ -111,7 +111,6 @@ Ficha de {{Session::get('nombremascota')}}
                 <div class="form-group">
                     <label>Atendido por:</label>
                     {{ Form::select('profesionales', $combobox2, $selected2, array('class' => 'form-control', 'tabindex' => '4')) }}
-                    <p class="help-block">Seleccione una comuna de la lista.</p>
                 </div>
             </div>
         </div>    

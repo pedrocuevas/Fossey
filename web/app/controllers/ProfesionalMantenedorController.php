@@ -59,8 +59,15 @@ class ProfesionalMantenedorController extends BaseController {
     
        public function busqueda() {
 
-        $rut = Input::get('rut');
-        $rutsindigito = substr($rut, 0, -2); 
+        $data = Input::all();         
+        $reglas = array('rut' =>  'required');
+                
+        $validador = Validator::make($data, $reglas);
+        
+        if($validador->fails()){
+             return Redirect::route('buscarProfesionalMantenedor')->withErrors($validador); 
+        } 
+        $rutsindigito = substr($data['rut'], 0, -2); 
         $rut = str_replace(".", "", $rutsindigito);
 
         $profesional = Profesional::where('rut', '=', $rut)->first();

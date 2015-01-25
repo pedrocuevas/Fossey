@@ -15,19 +15,22 @@ Ingresar Nuevo Registro
 
 @if(!empty(Session::get('message')))
     @if(Session::get('message') == 'no_comuna')
-       <script>
-          alert("Debe seleccionar una comuna");
-       </script>
+       <div class="alert alert-warning alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Advertencia!</strong> Debe seleccionar una comuna
+        </div>
     @endif
     @if(Session::get('message') == 'no_especie')
-       <script>
-          alert("Debe seleccionar una especie");
-       </script>
+       <div class="alert alert-warning alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Advertencia!</strong> Debe seleccionar una especie
+        </div>
     @endif
     @if(Session::get('message') == 'no_raza')
-       <script>
-          alert("Debe seleccionar una raza");
-       </script>
+       <div class="alert alert-warning alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Advertencia!</strong> Debe seleccionar una raza
+        </div>
     @endif
 @endif    
 

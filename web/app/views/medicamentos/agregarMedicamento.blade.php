@@ -9,13 +9,15 @@ Agregar Medicamento
 
 @if(!empty(Session::get('message')))
     @if(Session::get('message') == 'medicamento_existe')
-    <script>
-    alert("Ya existe un medicamento con ese nombre")
-    </script>
+       <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Error!</strong> Ya existe medicamento
+        </div>
     @elseif(Session::get('message') == 'medicamento_add')
-    <script>
-    alert("Medicamento guardado con exito!")
-    </script>
+        <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Completado!</strong> Medicamento guardado con éxito
+        </div>
     @endif
 @endif
 
@@ -59,14 +61,14 @@ Agregar Medicamento
             <div class="col-lg-2">
                 <div class="form-group">
                     {{Form::label('dosis_min', 'Dosis Mínima:')}}
-                    {{Form::text('dosis_min',null,array('class' => 'form-control', 'maxlength' => '3','required' => 'required'))}}
+                    {{Form::text('dosis_min',null,array('class' => 'form-control', 'maxlength' => '5','required' => 'required'))}}
                     <p class="help-block">mg/Kg</p>
                 </div>
             </div>
             <div class="col-lg-2">
                 <div class="form-group">
                     {{Form::label('dosis_max', 'Dosis Máxima:')}}
-                    {{Form::text('dosis_max',null,array('class' => 'form-control', 'maxlength' => '3','required' => 'required'))}}
+                    {{Form::text('dosis_max',null,array('class' => 'form-control', 'maxlength' => '5','required' => 'required'))}}
                     <p class="help-block">mg/Kg</p>
                 </div>
             </div>
@@ -82,7 +84,7 @@ Agregar Medicamento
             <div class="col-lg-2">
                 <div class="form-group">
                     {{Form::label('tipo', 'Tipo:')}}
-                    {{Form::select('tipo', array('1' => 'Canino', '2' => 'Felino','3' => 'Todos'), '1',array('class' => 'form-control') )}}
+                    {{Form::select('tipo', array('1' => 'Canino', '2' => 'Felino','3' => 'Todos'), '3',array('class' => 'form-control') )}}
                 </div>
             </div>
         </div>           

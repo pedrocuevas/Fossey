@@ -10,8 +10,8 @@ class MedicamentoController extends BaseController {
         $reglas = array(
                         'nombre_generico'          => 'alpha_spaces|required|min:4|max:80', 
                         'nombre_comercial'         => 'alpha_spaces|min:4|max:80', 
-                        'dosis_min'                => 'numeric|digits_between:1,3|required',
-                        'dosis_max'                => 'numeric|digits_between:1,3|required' 
+                        'dosis_min'                => 'numeric|digits_between:1,5|required',
+                        'dosis_max'                => 'numeric|digits_between:1,5|required' 
                 );
                 
         $validador = Validator::make($data, $reglas);

@@ -13,19 +13,20 @@ Agregar Horario Peluqueria
 
 @if(!empty(Session::get('message')))
     @if(Session::get('message') == 'existe_horario')
-    <script>
-        alert("Ya existe un horario para el profesional");
-    </script>
-    @endif
-    @if(Session::get('message') == 'no_profesional')
-    <script>
-        alert("Debe seleccionar un  profesional");
-    </script>
-    @endif
-    @if(Session::get('message') == 'hora_invalida')
-    <script>
-        alert("Debe seleccionar un horario válido");
-    </script>
+       <div class="alert alert-info alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Lo Sentimos!</strong> Ya existe un horario para el profesional seleccionado
+        </div>
+    @elseif(Session::get('message') == 'no_profesional')
+       <div class="alert alert-warning alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Advertencia!</strong> Debe seleccionar un profesional
+        </div>
+    @elseif(Session::get('message') == 'hora_invalida')
+       <div class="alert alert-warning alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Advertencia!</strong> Debe seleccionar un horario válido
+        </div>
     @endif
 @endif
 

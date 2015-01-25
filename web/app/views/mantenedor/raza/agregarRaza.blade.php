@@ -9,14 +9,16 @@ Agregar Raza
 
 @if(!empty(Session::get('message')))
     @if(Session::get('message') == 'raza_existe')
-    <script>
-        alert("La raza ingresada ya existe");
-    </script>
+       <div class="alert alert-warning alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Advertencia!</strong> La raza ingresada ya existe
+        </div>
     @endif
     @if(Session::get('message') == 'raza_exito')
-    <script>
-        alert("Raza ingresada con éxito");
-    </script>
+       <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Completado!</strong> Raza ingresada con éxito
+        </div>
     @endif
 @endif
 

@@ -5,12 +5,13 @@ class AtencionController extends BaseController {
     public function crearRegistro($id) {
 
         $data = Input::all(); 
-       
+
         $reglas = array(
                 'peso' => 'numeric|digits_between:1,3|required',
                 'fecha_control' => 'after:'.date("d-m-Y")
         );
         
+        $fechaconformato = explode("-", $data['fecha']);
         $validador = Validator::make($data, $reglas);
         
         if($validador->fails()){
@@ -18,7 +19,7 @@ class AtencionController extends BaseController {
         }
         else{
         $atencion = New Atencion();
-        $atencion->fecha = $data['fecha'];    
+        $atencion->fecha = $fechaconformato[2]."-".$fechaconformato[1]."-".$fechaconformato[0];    
         $atencion->descripcion = $data['descripcion'];
         $atencion->peso = $data['peso'];
         $atencion->profesional_id = '1';

@@ -11,36 +11,34 @@ Ficha de {{Session::get('nombremascota')}}
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <i class="fa fa-user fa-fw"></i> Detalle de Atención
+        <i class="fa fa-user fa-fw"></i> <strong>Detalle de Atención</strong>
         <div class="pull-right">
         </div>
     </div>
-<div class="panel-body">
-    <div class="well"> 
-        <div class="row">
-            <div class="col-lg-6">          
-                <h2>Nombre: {{Session::get('nombremascota')}}</h2>
-            </div>
-            <div class="col-lg-6">
-                <h2>Peso: {{$peso}} Kg.</h2>     
-            </div>
-        </div>   
-        <div class="row">
-            <div class="col-lg-6">          
-                <h2>Fecha de Atención: {{$fecha_atencion}}</h2>
+    <div class="panel-body">
+        <div class="well"> 
+            <div class="row">
+                <div class="col-lg-6">          
+                    <h3>Nombre: <strong>{{Session::get('nombremascota')}}</strong></h3>
+                </div>
+                <div class="col-lg-6">
+                    <h3>Peso: <strong>{{$peso}} Kg.</strong></h3>     
+                </div>
+            </div>   
+            <div class="row">
+                <div class="col-lg-6">          
+                    <h3>Fecha de Atención: <strong>{{$fecha_atencion}}</strong></h3>
+                </div>
             </div>
         </div>
-    </div> 
-</div>
-                     
-</div>
-
-<div class="panel panel-default">
-    <div class="row">
-            <div class="col-lg-6">
-                <h2>Detalles: {{$descripcion}}</h2>     
+        <div class="well">  
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>Detalles</h3>
+                    <p>{{$descripcion}}</p>
+                </div>
             </div>
+        </div>    
     </div>
 </div>
-
 @endsection

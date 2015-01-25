@@ -26,13 +26,13 @@ class IngresoController extends BaseController {
            return Redirect::route('registro')->withErrors($validador);
         }
         else if($data['comunas'] == 0){
-           return Redirect::route('registro')->with('message','no_comuna'); 
+           return Redirect::route('registro')->with('message','no_comuna')->withInput(); 
         }
         else if($data['especie'] == 0){
-           return Redirect::route('registro')->with('message','no_especie'); 
+           return Redirect::route('registro')->with('message','no_especie')->withInput(); 
         }
         else if(($data['razas'] == 0) || ($data['razas'] == '')){
-           return Redirect::route('registro')->with('message','no_raza'); 
+           return Redirect::route('registro')->with('message','no_raza')->withInput(); 
         }
         else{
             

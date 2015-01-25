@@ -163,7 +163,7 @@ Route::get('/mantenedor/propietario/editarPropietario', array('before' => 'auth'
 
 Route::post('/editarPropietarioGuardar', array('as' => 'editarPropietarioGuardar', 'uses' => 'EditarPropietarioController@editarRegistro'));
 
-Route::get('borrarPropietario', 'PropietarioController@borrar');
+Route::get('borrarPropietario', array('before' => 'auth','as' => 'borrarPropietario', 'uses' => 'PropietarioController@borrar'));
 
 Route::get('/mantenedor/profesional/agregarProfesional', array('before' => 'auth','as' => 'agregarProfesional', function()
 {

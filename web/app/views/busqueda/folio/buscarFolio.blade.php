@@ -9,17 +9,16 @@ Buscar Registros por N° de folio
 
 @section('contenido')
 
-    
-<?php if (empty(Session::get('message')))
-            $message = 'prueba';
-      else
-           $message = Session::get('message');
- ?>
-@if($message == 'folio_inexistente')
-   <script>
-      alert("El folio ingresado no se encuentra en nuestros registros");
-   </script>
+@if(!empty(Session::get('message')))
+    @if(Session::get('message') == 'folio_inexistente')
+       <div class="alert alert-info alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Lo Sentimos!</strong> El folio ingresado no se encuentra en nuestros registros
+        </div>
+    @endif
 @endif
+
+
 
  @if ($errors->any())
     <div class="alert alert-danger">
