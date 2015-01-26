@@ -11,15 +11,15 @@ class AtencionController extends BaseController {
                 'fecha_control' => 'after:'.date("d-m-Y")
         );
         
-        $fechaconformato = explode("-", $data['fecha']);
+        
         $validador = Validator::make($data, $reglas);
         
         if($validador->fails()){
-            return Redirect::to('ficha/verFicha'.$id)->withErrors($validador);
+            return Redirect::to('ficha/verFicha'.$id)->withErrors($validador)->withInput();
         }
         else{
         $atencion = New Atencion();
-        $atencion->fecha = $fechaconformato[2]."-".$fechaconformato[1]."-".$fechaconformato[0];    
+        $atencion->fecha = $data['fecha'];    
         $atencion->descripcion = $data['descripcion'];
         $atencion->peso = $data['peso'];
         $atencion->profesional_id = '1';

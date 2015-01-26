@@ -8,14 +8,11 @@ class ProfesionalMantenedorController extends BaseController {
         $data = Input::all(); 
         $rutsindigito = substr($data['rut'], 0, -2); 
         $rut = str_replace(".", "", $rutsindigito);
-       
-        $profesional = New Profesional();
-        $buscaPropietario = Propietario::where('rut','=',$rut);
-        
+                       
         $reglas = array('nombres'           => 'alpha_spaces|required|min:4|max:80', 
                         'direccion'         => 'required',
-                        'correo'            => 'email|unique:propietarios,email' ,
-                        'fono'              => 'digits:8',
+                        'correo'            => 'email' ,
+                        'fono'              => array('regex:/^[9|2]-[5-9]([0-9]{6,7})$/'),
                         'genero'            => 'boolean',
                         'titulo'            => 'alpha_spaces|required|min:4|max:40',
                         'fecha_nac'         => 'before:'.date("d-m-Y"),
@@ -23,16 +20,19 @@ class ProfesionalMantenedorController extends BaseController {
             );
         
         $validador = Validator::make($data, $reglas);
-        
+      
         if($validador->fails()){
-            return Redirect::route('agregarProfesional')->withErrors($validador);
+            return Redirect::route('agregarProfesional')->withErrors($validador)->withInput();
         }
-        else{
-            if(empty($buscaPropietario))
+        
+        $profesional = New Profesional();
+        $buscaProfesional = Profesional::where('rut','=',$rut)->first();
+
+  
+            if(empty($buscaProfesional))
             {    
             $profesional->rut = $rut;    
             $profesional->nombres = $data['nombres'];
-            $profesional->apellidos = $data['apellidos'];
             $profesional->comuna_id = $data['comunas'];
             $profesional->direccion = $data['direccion'];
             $profesional->genero = $data['genero'];
@@ -44,16 +44,13 @@ class ProfesionalMantenedorController extends BaseController {
             $profesional->tipo_id = $data['tipo'];
             $profesional->save();
 
-           return Redirect::to('/home')->with('message','ok_update');
+           return Redirect::route('agregarProfesional')->with('message','ok_agregado');
             }
             else{
                  Input::flash();
                  return Redirect::route('agregarProfesional')->withInput()->with('message','rut_existe');
              }
         
-          
-           }
-
         }  
     
     

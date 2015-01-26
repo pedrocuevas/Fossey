@@ -10,7 +10,7 @@ class TomarHoraController extends BaseController {
              $horarioProfesional = Horario::where("id_profesional","=",$data['profesional'])->first();
             }
             else{
-             return Redirect::to('tomarHora');    
+             return Redirect::route('tomarHora');    
             }
             
             
@@ -34,6 +34,13 @@ class TomarHoraController extends BaseController {
                $horario = Agenda::where('hora', '=', $hora.':'.$min.':'.$seg)->
                           where('fecha','=',$data['fecha'])->first();
                $hora++;
+               $min += 30;
+               
+               if($min == 60){
+                  $hora++;
+                  $min = 0;
+               }
+               
                if(empty($horario))
                {
                  $array[] = 1;  

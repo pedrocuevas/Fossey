@@ -69,7 +69,8 @@ Ficha de {{Session::get('nombremascota')}}
             <tbody>    
                 @foreach ($atenciones as $atencion)
                 <tr>
-                    <td>{{ $atencion->fecha }}</td>
+                    <?php $fechaF = explode("-",$atencion->fecha); ?>
+                    <td>{{ $fechaF[2]."-".$fechaF[1]."-".$fechaF[0] }}</td>
                     <td>{{ $atencion->profesional->nombres.' '.$atencion->profesional->apellidos }}</td>
                     <td><a href="verAtencion{{$atencion->id}}">Ver Detalles</a></td>
                 </tr>
@@ -113,26 +114,7 @@ Ficha de {{Session::get('nombremascota')}}
                     {{ Form::select('profesionales', $combobox2, $selected2, array('class' => 'form-control', 'tabindex' => '4')) }}
                 </div>
             </div>
-        </div>    
-        <div class="row">  
-            <div class="col-lg-6">
-                <div class="form-group">
-                    <label>Vacuna:</label>
-                    <select class="form-control">
-                        <option value="Octuple">Octuple</option>
-                        <option value="Antirábica">Antirábica</option>
-                    </select>
-                </div>  
-            </div>
-            <div class="col-lg-6">
-                <div class="form-group">
-                    <label>Otros:</label>
-                    <select class="form-control">
-                        <option>Antiparasitario</option>
-                    </select>
-                </div>  
-            </div>
-        </div>    
+        </div>       
         <div class="row">  
             <div class="col-lg-12">
                 <div class="form-group">

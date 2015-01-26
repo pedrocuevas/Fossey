@@ -23,7 +23,7 @@ class IngresoController extends BaseController {
         $validador = Validator::make($data, $reglas);
         
         if($validador->fails()){
-           return Redirect::route('registro')->withErrors($validador);
+           return Redirect::route('registro')->withErrors($validador)->withInput();
         }
         else if($data['comunas'] == 0){
            return Redirect::route('registro')->with('message','no_comuna')->withInput(); 

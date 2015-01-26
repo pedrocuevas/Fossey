@@ -17,6 +17,11 @@ Agregar Profesional
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <strong>Error!</strong> El rut ingresado ya existe
         </div>
+    @elseif(Session::get('message') == 'ok_agregado')
+       <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Completado!</strong> Profesional agregado exitosamente
+        </div>
     @endif
 @endif
 
@@ -95,8 +100,8 @@ Agregar Profesional
             <div class="col-lg-4"
                  <div class="form-group">
                     {{Form::label('fono', 'Fono de contacto:')}}
-                    {{Form::text('fono',null,array('class' => 'form-control', 'placeholder' => 'Ingrese número de contacto', 'maxlength' => '8'))}}      
-                    <p class="help-block">Ingrese el teléfono sin código de área.</p>
+                    {{Form::text('fono',null,array('class' => 'form-control', 'placeholder' => 'Ingrese número de contacto', 'maxlength' => '11'))}}      
+                    <p class="help-block">Ej: 9-12345678 o 2-1234567</p>
                 </div>
 
                 <div class="col-lg-4">     

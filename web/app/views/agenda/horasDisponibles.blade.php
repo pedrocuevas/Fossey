@@ -2,7 +2,7 @@
 @extends('layout2')
 
 @section('titulo')
-Horas Disponibles 
+Horas Disponibles {{$fecha}}
 @endsection
 
 
@@ -35,7 +35,7 @@ Horas Disponibles
                 <td>Hora no disponible</td>
                 @endif
             </tr>
-            <?php $inicio = date('H:s:i', strtotime($inicio . ' + 1 hours')); ?>
+            <?php $inicio = date('H:i:s', strtotime($inicio . ' + 5400 seconds')); ?>
             @endforeach
         </table> 
     </div>

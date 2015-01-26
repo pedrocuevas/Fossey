@@ -99,14 +99,15 @@ Route::get('ficha/verFicha{id}', array('as' => 'verFicha', function($id)
  
 Session::put('nombremascota', $mascota->nombre);
 
-    $profesionales = Profesional::all()->lists('nombres','id');
+    $profesionales = Profesional::orderBy('nombres', 'asc')->get()->lists('nombres','id');
     $combobox2 = array(0 => "Seleccione un profesional ") + $profesionales;
     $selected2 = array();
+    $fechaformat = explode("-",$mascota->fecha_nacimiento);
     
  $data = array(  'id'     => $id,
                  'especie' => $mascota->raza->especie->nombre,
                  'raza'    => $mascota->raza->nombre,
-                 'fechanac' => $mascota->fecha_nacimiento,
+                 'fechanac' =>  $fechaformat[2]."-".$fechaformat[1]."-".$fechaformat[0],
                  'atenciones' => $atenciones,
                  'combobox2' => $combobox2,
                  'selected2' => $selected2
