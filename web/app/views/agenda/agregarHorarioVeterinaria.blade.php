@@ -49,41 +49,158 @@ Agregar Horario Veterinaria
             </div>
         </div> 
         <div class="row">
-
-            <div class="col-lg-12">
+            <div class="col-lg-4">
                 <div class="form-group">
-                   {{Form::label('lunes', 'Lunes:')}}
-                   {{Form::checkbox('lunes', '1',true)}}
-                   {{Form::label('martes', 'Martes:')}}
-                   {{Form::checkbox('martes', '1',true)}}
-                   {{Form::label('miercoles', 'Miércoles:')}}
-                   {{Form::checkbox('miercoles', '1',true)}}
-                   {{Form::label('jueves', 'Jueves:')}}
-                   {{Form::checkbox('jueves', '1',true)}}
-                   {{Form::label('viernes', 'Viernes:')}}
-                   {{Form::checkbox('viernes', '1',true)}}
-                   {{Form::label('sabado', 'Sábado:')}}
-                   {{Form::checkbox('sabado', '1')}}
-                   {{Form::label('domingo', 'Domingo:')}}
-                   {{Form::checkbox('domingo', '1')}}
+                    {{Form::checkbox('lunes', '1',true, array( 'onclick '=>'changeLunes(this)'))}}
+                    {{Form::label('lunes', 'Lunes')}}                  
                 </div>
             </div>
-        </div>           
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::label('horainicio_l', 'Hora de Inicio:')}}
+                    {{Form::text('horainicio_l',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
+                                 'onblur' => 'CheckTime(this)' , 'placeholder' => 'hh:mm:ss', 'id' => 'horainicio_l'))}}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::label('horafin_l', 'Hora de Término:')}}
+                    {{Form::text('horafin_l',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
+                                 'onblur' => 'CheckTime(this)',  'placeholder' => 'hh:mm:ss', 'id' => 'horafin_l'))}}
+                </div>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="form-group">
-                    {{Form::label('horainicio', 'Hora de Inicio:')}}
-                    {{Form::text('horainicio',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
-                                 'onblur' => 'CheckTime(this)' , 'placeholder' => 'hh:mm:ss'))}}
+                    {{Form::checkbox('martes', '1',true, array( 'onclick '=>'changeMartes(this)'))}}
+                    {{Form::label('martes', 'Martes')}}                 
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="form-group">
-                    {{Form::label('horafin', 'Hora de Término:')}}
-                    {{Form::text('horafin',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
-                                 'onblur' => 'CheckTime(this)',  'placeholder' => 'hh:mm:ss'))}}
+                    {{Form::label('horainicio_ma', 'Hora de Inicio:')}}
+                    {{Form::text('horainicio_ma',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
+                                 'onblur' => 'CheckTime(this)' , 'placeholder' => 'hh:mm:ss', 'id' => 'horainicio_ma'))}}
                 </div>
-            </div>      
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::label('horafin_ma', 'Hora de Término:')}}
+                    {{Form::text('horafin_ma',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
+                                 'onblur' => 'CheckTime(this)',  'placeholder' => 'hh:mm:ss', 'id' => 'horafin_ma'))}}
+                </div>
+            </div>
+        </div>  
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::checkbox('miercoles', '1',true, array( 'onclick '=>'changeMiercoles(this)'))}}
+                    {{Form::label('miercoles', 'Miércoles')}}                  
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::label('horainicio_mi', 'Hora de Inicio:')}}
+                    {{Form::text('horainicio_mi',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
+                                 'onblur' => 'CheckTime(this)' , 'placeholder' => 'hh:mm:ss', 'id' => 'horainicio_mi'))}}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::label('horafin_mi', 'Hora de Término:')}}
+                    {{Form::text('horafin_mi',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
+                                 'onblur' => 'CheckTime(this)',  'placeholder' => 'hh:mm:ss', 'id' => 'horafin_mi'))}}
+                </div>
+            </div>
+        </div>  
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::checkbox('jueves', '1',true, array( 'onclick '=>'changeJueves(this)'))}}
+                    {{Form::label('jueves', 'Jueves')}}                
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::label('horainicio_j', 'Hora de Inicio:')}}
+                    {{Form::text('horainicio_j',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
+                                 'onblur' => 'CheckTime(this)' , 'placeholder' => 'hh:mm:ss', 'id' => 'horainicio_j'))}}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::label('horafin_j', 'Hora de Término:')}}
+                    {{Form::text('horafin_j',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
+                                 'onblur' => 'CheckTime(this)',  'placeholder' => 'hh:mm:ss', 'id' => 'horafin_j'))}}
+                </div>
+            </div>
+        </div>  
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::checkbox('viernes', '1',true, array( 'onclick '=>'changeViernes(this)'))}}
+                    {{Form::label('viernes', 'Viernes')}}                 
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::label('horainicio_v', 'Hora de Inicio:')}}
+                    {{Form::text('horainicio_v',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
+                                 'onblur' => 'CheckTime(this)' , 'placeholder' => 'hh:mm:ss', 'id' => 'horainicio_v'))}}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::label('horafin_v', 'Hora de Término:')}}
+                    {{Form::text('horafin_v',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
+                                 'onblur' => 'CheckTime(this)',  'placeholder' => 'hh:mm:ss', 'id' => 'horafin_v'))}}
+                </div>
+            </div>
+        </div>  
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::checkbox('sabado', '1',true,array( 'onclick '=>'changeSabado(this)'))}}
+                    {{Form::label('sabado', 'Sábado')}}                 
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::label('horainicio_s', 'Hora de Inicio:')}}
+                    {{Form::text('horainicio_s',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
+                                 'onblur' => 'CheckTime(this)' , 'placeholder' => 'hh:mm:ss', 'id' => 'horainicio_s'))}}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::label('horafin_s', 'Hora de Término:')}}
+                    {{Form::text('horafin_s',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
+                                 'onblur' => 'CheckTime(this)',  'placeholder' => 'hh:mm:ss','id' => 'horafin_s'))}}
+                </div>
+            </div>
+        </div>  
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::checkbox('domingo', '1',true, array( 'onclick '=>'changeDomingo(this)'))}}
+                    {{Form::label('domingo', 'Domingo')}}                 
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::label('horainicio_d', 'Hora de Inicio:')}}
+                    {{Form::text('horainicio_d',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
+                                 'onblur' => 'CheckTime(this)' , 'placeholder' => 'hh:mm:ss', 'id' => 'horainicio_d'))}}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{Form::label('horafin_d', 'Hora de Término:')}}
+                    {{Form::text('horafin_d',null,array('class' => 'form-control', 'onkeyup' => "mascara(this,':',patron,true)", 
+                                 'onblur' => 'CheckTime(this)',  'placeholder' => 'hh:mm:ss', 'id' => 'horafin_d'))}}
+                </div>
+            </div>
         </div>        
     <div class="panel panel-default">
 
@@ -93,6 +210,48 @@ Agregar Horario Veterinaria
         </div> 
     </div>        
     </div>
+        
+ <script>
+ function changeLunes(obj){
+     document.getElementById("horainicio_l").disabled = ! obj.checked;
+     document.getElementById("horafin_l").disabled = ! obj.checked;
+    }
+    
+ function changeMartes(obj){
+     document.getElementById("horainicio_ma").disabled = ! obj.checked;
+     document.getElementById("horafin_ma").disabled = ! obj.checked;
+    } 
+    
+    
+ function changeMiercoles(obj){
+     document.getElementById("horainicio_mi").disabled = ! obj.checked;
+     document.getElementById("horafin_mi").disabled = ! obj.checked;
+    } 
+    
+    
+  function changeJueves(obj){
+     document.getElementById("horainicio_j").disabled = ! obj.checked;
+     document.getElementById("horafin_j").disabled = ! obj.checked;
+    } 
+    
+   function changeViernes(obj){
+     document.getElementById("horainicio_v").disabled = ! obj.checked;
+     document.getElementById("horafin_v").disabled = ! obj.checked;
+    } 
+    
+    function changeSabado(obj){
+     document.getElementById("horainicio_s").disabled = ! obj.checked;
+     document.getElementById("horafin_s").disabled = ! obj.checked;
+    }  
+   
+    function changeDomingo(obj){
+     document.getElementById("horainicio_d").disabled = ! obj.checked;
+     document.getElementById("horafin_d").disabled = ! obj.checked;
+    } 
+        
+        
+        
+ </script>        
     {{ Form::close(); }}
 
    

@@ -17,7 +17,7 @@ $(document).ready (function (){
     $('#delete').click (function () {
         
         if(confirm("¿Está seguro que desea eliminar el registro?")){
-              document.location.href="borrarProfesional";
+              document.location.href="{{URL::route('borrarProfesional')}}";
         }
 
     });

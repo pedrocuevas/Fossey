@@ -12,6 +12,10 @@ public function comuna(){
 public function horario(){    
    return $this->hasOne('Horario'); 
 }
+
+public function agendas(){    
+   return $this->hasMany('Agenda'); 
+}
         
 }
 

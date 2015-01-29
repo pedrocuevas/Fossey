@@ -196,6 +196,8 @@ Route::get('/mantenedor/profesional/editarProfesional', array('before' => 'auth'
 
 Route::post('/editarProfesionalGuardar', array('as' => 'editarProfesionalGuardar', 'uses' => 'EditarProfesionalController@editarRegistro'));
 
+Route::get('borrarProfesional', array('before' => 'auth','as' => 'borrarProfesional', 'uses' => 'ProfesionalMantenedorController@borrar'));
+
 Route::get('/mantenedor/raza/agregarRaza', array('before' => 'auth','as' => 'agregarRaza', function()
 {
             return View::make('mantenedor.raza.agregarRaza');

@@ -28,6 +28,11 @@ Tomar Hora
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <strong>Lo Sentimos!</strong> El profesional seleccionado no ha ingresado su horario
         </div>
+       @elseif(Session::get('message') == 'hora_existe')
+       <div class="alert alert-info alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Lo Sentimos!</strong> La hora ya fue tomada.
+        </div>
          @endif
  @endif
  

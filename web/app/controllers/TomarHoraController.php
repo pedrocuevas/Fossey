@@ -15,15 +15,69 @@ class TomarHoraController extends BaseController {
             
             
             if(isset($horarioProfesional))
-            {    
+            {
+            
+        
+                
             $dias = explode(',',$horarioProfesional->dias);
-            $horainicio = explode(':',$horarioProfesional->hora_inicio);
-            $hora = $horainicio[0];
-            $min = $horainicio[1];
-            $seg = $horainicio[2];
-            $horafin = explode(':',$horarioProfesional->hora_fin);
-            $inicio = date($horarioProfesional->hora_inicio);
-            $fin = $horarioProfesional->hora_fin;
+            $horainicio = explode(',',$horarioProfesional->hora_inicio);
+            $horafin = explode(',',$horarioProfesional->hora_fin);
+            
+            $horaini_l = $horainicio[0];
+            $horaini_ma = $horainicio[1];
+            $horaini_mi = $horainicio[2];
+            $horaini_j = $horainicio[3];
+            $horaini_v = $horainicio[4];
+            $horaini_s = $horainicio[5];
+            $horaini_d = $horainicio[6];
+            
+            $horafin_l = $horafin[0];
+            $horafin_ma = $horafin[1];
+            $horafin_mi = $horafin[2];
+            $horafin_j = $horafin[3];
+            $horafin_v = $horafin[4];
+            $horafin_s = $horafin[5];
+            $horafin_d = $horafin[6];
+            
+          switch( date("N",strtotime($data['fecha'])) )
+            {
+            case 1:
+                  $horainicio = $horaini_l;
+                  $horafin    = $horafin_l;
+                  break;
+            case 2:
+                  $horainicio = $horaini_ma;
+                  $horafin    = $horafin_ma;
+                  break;
+            case 3:
+                  $horainicio = $horaini_mi;
+                  $horafin    = $horafin_mi;
+                  break;
+            case 4:
+                  $horainicio = $horaini_j;
+                  $horafin    = $horafin_j;
+                  break;
+            case 5:
+                  $horainicio = $horaini_v;
+                  $horafin    = $horafin_v;
+                  break;
+            case 6:
+                  $horainicio = $horaini_s;
+                  $horafin    = $horafin_s;
+                  break;
+            case 7:
+                  $horainicio = $horaini_d;
+                  $horafin    = $horafin_d;
+                  break;            
+            } 
+            
+            $horainicio2 = explode(":", $horainicio);
+            $hora = $horainicio2[0];
+            $min = $horainicio2[1];
+            $seg = $horainicio2[2];
+
+            $inicio = date($horainicio);
+            $fin = $horafin;
             }
             else{
                 return Redirect::to('tomarHora')->with('message','no_horario');
@@ -32,7 +86,7 @@ class TomarHoraController extends BaseController {
             for($i = 0 ; $i < ($fin-$inicio); $i++)
             {
                $horario = Agenda::where('hora', '=', $hora.':'.$min.':'.$seg)->
-                          where('fecha','=',$data['fecha'])->first();
+                          where('fecha','=',$data['fecha'])->where('id_profesional','=',$data['profesional'])->first();
                $hora++;
                $min += 30;
                
@@ -56,6 +110,7 @@ class TomarHoraController extends BaseController {
            
            
            Session::put('fechareserva',$data['fecha']);
+           Session::put('idprofe', $data['profesional']);
            
             $profesional = Profesional::find($data['profesional']);
            
@@ -173,23 +228,36 @@ class TomarHoraController extends BaseController {
       
       try 
       {        
-      $solicitante = new Solicitante();
-      $solicitante->rut = $rut;
-      $solicitante->nombre = $data['nombres'];
-      $solicitante->email = $data['correo'];
-      $solicitante->fono = $data['fono'];
-      $solicitante->save();
+
       
-        
-     
-      $agenda = new Agenda();
-      $agenda->fecha = Session::get('fechareserva');
-      $agenda->hora = $data['hora'];
-      $agenda->solicitante_id = $solicitante->id;
-      $agenda->save();
+      $existe_hora = Agenda::where('hora', '=', $data['hora'])->
+                         where('fecha','=',Session::get('fechareserva'))->first();
       
-      return Redirect::to('tomarHora')->with('message','reserva_exitosa'); 
-      }  
+     if(empty($existe_hora))
+     {      
+            $solicitante = new Solicitante();
+            $solicitante->rut = $rut;
+            $solicitante->nombre = $data['nombres'];
+            $solicitante->email = $data['correo'];
+            $solicitante->fono = $data['fono'];
+            $solicitante->save();
+         
+            $agenda = new Agenda();
+            $agenda->fecha = Session::get('fechareserva');
+            $agenda->hora = $data['hora'];
+            $agenda->solicitante_id = $solicitante->id;
+            $agenda->id_profesional = Session::get("idprofe");
+            $agenda->save();
+
+
+
+            return Redirect::to('tomarHora')->with('message','reserva_exitosa'); 
+            }
+      else{
+          return Redirect::to('tomarHora')->with('message','hora_existe'); 
+      }
+      
+      }
       catch (Exception $ex) 
       {
           return Redirect::to('tomarHora')->with('message',$ex); 

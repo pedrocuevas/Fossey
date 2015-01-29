@@ -93,6 +93,15 @@ class ProfesionalMantenedorController extends BaseController {
                               'id'=> $profesional->id));
           }
        }
+       
+      public function borrar(){
+           
+           $profesional = Profesional::find(Session::get('id_pro'));
+           $profesional->delete();
+           return Redirect::route('buscarProfesionalMantenedor')->with('message','ok_delete');
+       }
+       
+    
     
 }   
 
