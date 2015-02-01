@@ -10,7 +10,7 @@ public function solicitante(){
 }
 
 public function profesional(){    
-   return $this->belongsTo('Profesional'); 
+   return $this->belongsTo('Profesional','id_profesional'); 
 }
         
 }

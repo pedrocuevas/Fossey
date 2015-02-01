@@ -16,6 +16,10 @@ public function horario(){
 public function agendas(){    
    return $this->hasMany('Agenda'); 
 }
+
+public function tipo(){    
+   return $this->belongsTo('Tipo'); 
+}
         
 }
 

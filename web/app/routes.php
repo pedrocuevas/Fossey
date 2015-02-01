@@ -295,5 +295,9 @@ return View::make('agenda.reservaHora', $datos);
 
 Route::post('reservarHora', array('as' => 'reservarHora','uses' => 'TomarHoraController@reservar'));
 
+Route::get('agenda/agendaPeluqueria', array('as' => 'agendaPeluqueria','uses' => 'AgendaController@agendaPeluqueria'));
+
+Route::get('agenda/agendaVeterinaria', array('as' => 'agendaVeterinaria','uses' => 'AgendaController@agendaVeterinaria'));
+
 //-------------------------FIN DEL MÓDULO DE AGENDAMIENTO DE HORAS----------------------------------------------
 

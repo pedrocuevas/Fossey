@@ -103,6 +103,20 @@
                                         </ul>
                                     </li>
                                 </ul>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="#">Ver Agenda</a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="{{ URL::route('agendaPeluqueria')}}">Peluquería</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ URL::route('agendaVeterinaria')}}">Consulta Veterinaria</a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="medicamentos.html"><i class="fa fa-book fa-fw"></i> Medicamentos</a>

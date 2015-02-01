@@ -33,14 +33,17 @@ Tomar Hora
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <strong>Lo Sentimos!</strong> La hora ya fue tomada.
         </div>
+        @elseif(Session::get('message') == 'no_dia')
+       <div class="alert alert-info alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Lo Sentimos!</strong> El profesional no atiende este día.
+        </div>
          @endif
  @endif
  
                 <div class="col-lg-4"> 
                     {{ Form::open(array('route' => 'verHorario')) }}
-                    <div class="hero-unit">
-                        <input  name="fecha" type="text"  placeholder="click para mostrar fecha"  id="example1">
-                    </div>
+                        <input  name="fecha" type="date" class="form-control">
                 </div>
                 <div class="col-lg-4"> 
                         {{Form::select('tipo', array('0' => 'Seleccione un servicio', '1' => 'Veterinaria', '2' => 'Peluqueria'), '0',array('class' => 'form-control', 'id' => 'tipo'))}}
@@ -65,9 +68,7 @@ Tomar Hora
 // When the document is ready
 $(document).ready(function() {
 
-    $('#example1').datepicker({
-        format: "dd/mm/yyyy"
-    });
+
     
             $('#tipo').change(function(){
 

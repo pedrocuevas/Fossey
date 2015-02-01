@@ -9,6 +9,7 @@ Horas Disponibles {{$fecha}}
 
 @section('contenido')     
 
+<h3>Servicio: {{$servicio}}</h3>
 <h3>Nombre del profesional: {{$nombre}}</h3>
 
 <div class="row">
@@ -19,7 +20,7 @@ Horas Disponibles {{$fecha}}
                     <th>Hora</th>
                     <th></th>
                 </tr>
-            </thead>  
+            </thead> 
             @foreach($array as $datos)
             <tr>
                 <td>{{$inicio}}</td>
@@ -35,7 +36,13 @@ Horas Disponibles {{$fecha}}
                 <td>Hora no disponible</td>
                 @endif
             </tr>
-            <?php $inicio = date('H:i:s', strtotime($inicio . ' + 5400 seconds')); ?>
+            <?php 
+             if($tipo == 2)
+               $inicio = date('H:i:s', strtotime($inicio . ' + 5400 seconds'));
+             else
+               $inicio = date('H:i:s', strtotime($inicio . ' + 3600 seconds'));  
+            
+             ?>
             @endforeach
         </table> 
     </div>

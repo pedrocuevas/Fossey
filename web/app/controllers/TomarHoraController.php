@@ -10,7 +10,7 @@ class TomarHoraController extends BaseController {
              $horarioProfesional = Horario::where("id_profesional","=",$data['profesional'])->first();
             }
             else{
-             return Redirect::route('tomarHora');    
+             return Redirect::to('tomarHora');    
             }
             
             
@@ -38,6 +38,10 @@ class TomarHoraController extends BaseController {
             $horafin_v = $horafin[4];
             $horafin_s = $horafin[5];
             $horafin_d = $horafin[6];
+            
+  
+        if($dias[date("N",strtotime($data['fecha']))-1] == 1)
+        {        
             
           switch( date("N",strtotime($data['fecha'])) )
             {
@@ -78,15 +82,19 @@ class TomarHoraController extends BaseController {
 
             $inicio = date($horainicio);
             $fin = $horafin;
-            }
-            else{
-                return Redirect::to('tomarHora')->with('message','no_horario');
-            }  
+            $fin_sep = explode(":",$fin);
+
+            
+         
             
             for($i = 0 ; $i < ($fin-$inicio); $i++)
             {
                $horario = Agenda::where('hora', '=', $hora.':'.$min.':'.$seg)->
-                          where('fecha','=',$data['fecha'])->where('id_profesional','=',$data['profesional'])->first();
+                          where('fecha','=',date("Y-m-d",strtotime($data['fecha'])))->where('id_profesional','=',$data['profesional'])->first();
+               
+               
+             if($data['tipo'] == 2)
+             {    
                $hora++;
                $min += 30;
                
@@ -94,6 +102,13 @@ class TomarHoraController extends BaseController {
                   $hora++;
                   $min = 0;
                }
+             }
+             else{
+                  $hora++;
+              }
+                 
+               
+
                
                if(empty($horario))
                {
@@ -103,7 +118,19 @@ class TomarHoraController extends BaseController {
                {
                    $array[] = 0;
                }
+               
+               if($hora > $fin_sep[0]){break;}
+
                 
+            }
+            
+                        }
+            else{
+                return Redirect::to('tomarHora')->with('message','no_dia');
+            }
+                                    }
+            else{
+                return Redirect::to('tomarHora')->with('message','no_horario');
             }
             
     
@@ -113,13 +140,24 @@ class TomarHoraController extends BaseController {
            Session::put('idprofe', $data['profesional']);
            
             $profesional = Profesional::find($data['profesional']);
-           
+            $fechaformat = explode("-",$data['fecha']);
+            
+            if ($profesional->tipo_id == 2) {
+                Session::put('servicio',"Peluquería");
+            } else {
+                Session::put("servicio","Consulta Veterinaria");
+            }
+            
+            Session::put("nombreprofe",$profesional->nombres);
+
             $datos = array('inicio'      => $inicio ,
                             'fin'        => $fin,
                             'horainicio' => $horainicio[0],
                             'horafin'    => $horafin[0],
-                            'fecha'      => $data['fecha'],
-                            'nombre'     => $profesional->nombres,
+                            'fecha'      => $fechaformat[2]."/".$fechaformat[1]."/".$fechaformat[0],
+                            'nombre'     => Session::get('nombreprofe'),
+                            'servicio'   => Session::get('servicio'),
+                            'tipo'       => $data['tipo'],
                             'array'      => $array);
             
             $lunes = $dias[0];
@@ -196,15 +234,17 @@ class TomarHoraController extends BaseController {
             
             $semana = array($lunes,$martes,$miercoles,$jueves,$viernes,$sabado,$domingo);
             
-
+           
             
-            $fecha = explode('/',$data['fecha']);
-            $dia = $fecha[0];
+            $fecha = explode('-',$data['fecha']);
+            $dia = $fecha[2];
             $mes = $fecha[1];
-            $agno = $fecha[2];        
+            $agno = $fecha[0];        
             $nombredia = date("D",mktime(0, 0, 0, $mes, $dia, $agno));
             
-            if (in_array($nombredia, $semana)) {
+
+            
+           if (in_array($nombredia, $semana)) {
                 return View::make('agenda.horasDisponibles', $datos);
              }
             else {
@@ -225,6 +265,9 @@ class TomarHoraController extends BaseController {
       $data = Input::all();
       $rutsindigito = substr($data['rut'], 0, -2); 
       $rut = str_replace(".", "", $rutsindigito);
+      
+      Session::put("email_soli",$data['correo']);
+      Session::put("nombres_soli",$data['nombres']);
       
       try 
       {        
@@ -248,9 +291,15 @@ class TomarHoraController extends BaseController {
             $agenda->solicitante_id = $solicitante->id;
             $agenda->id_profesional = Session::get("idprofe");
             $agenda->save();
+            
+          Mail::send('emails.template2', array('horas' => $data['hora'], 'fecha' => Session::get('fechareserva'), 'servicio' => Session::get('servicio'), 'nombre' => Session::get('nombreprofe')), function($message)
+          {
+              $message->to(Session::get('email_soli'), Session::get('nombres_soli'))->subject("Reserva de Hora Fossey");
+          });
+           
+            
 
-
-
+               
             return Redirect::to('tomarHora')->with('message','reserva_exitosa'); 
             }
       else{
