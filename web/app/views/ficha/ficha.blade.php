@@ -30,18 +30,21 @@ Ficha de {{Session::get('nombremascota')}}
     <div class="panel-body">
         <div class="well"> 
             <div class="row">
-                <div class="col-lg-6">          
+                <div class="col-lg-4">          
                     <h3>Nombre: <strong>{{Session::get('nombremascota')}}</strong></h3>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <h3>Especie: <strong>{{$especie}}</strong></h3>     
+                </div>
+                <div class="col-lg-4">
+                    <h3>Folio: <strong>{{$id}}</strong></h3>     
                 </div>
             </div>   
             <div class="row">
-                <div class="col-lg-6">          
+                <div class="col-lg-4">          
                     <h3>Raza: <strong>{{$raza}}</strong></h3>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <h3>Fecha de Nacimiento: <strong>{{$fechanac}}</strong></h3>     
                 </div>
             </div>

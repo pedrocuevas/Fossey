@@ -33,18 +33,24 @@ class RazaMantenedorController extends BaseController {
         }    
      public function buscar(){
          
-         $data = Input::all(); 
-         $raza = Raza::find($data['raza']);
          
-         Session::put('idraza',$data['raza']);
-         Session::put('nombreraza',$raza->nombre);
-         Session::put('descripcionraza',$raza->descripcion);
-         Session::put('tiporaza', $raza->especie_id);
-         
-         $datos = array('raza' => $raza->nombre);
-         
-         return View::make('mantenedor.raza.mantenedorRazas',$datos);
-         
+         $data = Input::all();
+       if($data['tipo'] != 0 && $data['raza'] != 0){ 
+            $raza = Raza::find($data['raza']);
+
+            Session::put('idraza',$data['raza']);
+            Session::put('nombreraza',$raza->nombre);
+            Session::put('descripcionraza',$raza->descripcion);
+            Session::put('tiporaza', $raza->especie_id);
+
+            $datos = array('raza' => $raza->nombre);
+
+            return View::make('mantenedor.raza.mantenedorRazas',$datos);
+       }
+       else{
+           return Redirect::route('buscarRaza');
+       }
+           
      } 
      
         public function borrar(){

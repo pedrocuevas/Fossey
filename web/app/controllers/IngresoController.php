@@ -14,10 +14,10 @@ class IngresoController extends BaseController {
                         'apellidos'         => 'alpha_spaces|required|min:4|max:80', 
                         'direccion'         => 'required',
                         'correo'            => 'email|unique:propietarios,email' ,
-                        'fono'              => array('regex:/^[9|2]-[5-9]([0-9]{6,7})$/'),
+                        'fono'              => array('regex:/^[9|2]-([0-9]{7,8})$/'),
                         'genero'            => 'boolean',
                         'nombre_mascota'    => 'alpha_spaces|required|min:4|max:40',
-                        'fecha_nac_mascota' => 'before:'.date("d-m-Y")
+                        'fecha_nac_mascota' => 'before:'.date("d-m-Y").'|required'
             );      
         
         $validador = Validator::make($data, $reglas);
@@ -69,7 +69,8 @@ class IngresoController extends BaseController {
 
 
 
-            return Redirect::route('home')->with('message','registro_ok'); 
+            //return Redirect::route('home')->with('message','registro_ok'); 
+             return Redirect::to('ficha/verFicha'.$mascota->id);
 
     }
     

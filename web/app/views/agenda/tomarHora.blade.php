@@ -2,7 +2,7 @@
 @extends('layout2')
 
 @section('titulo')
-Tomar Hora
+Agendar Hora
 @endsection
 
 @section('cabecera')
@@ -57,10 +57,12 @@ Tomar Hora
 
             <div class="row">   
           <div class="col-lg-12">         
-            <p><button type="Submit" class="btn btn-primary btn-lg">Ver Horas</button></p>
+              <h1 class="page-header"></h1>
+                  <p><button type="Submit" class="btn btn-primary btn-lg">Ver Horas</button></p>
         </div> 
                 {{ Form::close(); }}
-            </div>        
+            </div>
+  
 
         <!-- Load jQuery and bootstrap datepicker scripts -->
         <script src="js/bootstrap-datepicker.js"></script>

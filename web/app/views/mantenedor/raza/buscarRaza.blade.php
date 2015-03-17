@@ -40,7 +40,7 @@ Buscar Raza
             <div class="col-lg-6">
                 <div class="form-group">
                     {{Form::label('raza', 'Raza:')}}
-                    {{Form::select('raza', array('' => 'Seleccione una raza'), '', array('class' => 'form-control', 'id' => 'razas'))}} 
+                    {{Form::select('raza', array('0' => 'Seleccione una raza'), '', array('class' => 'form-control', 'id' => 'razas'))}} 
                 </div>
             </div>
 
