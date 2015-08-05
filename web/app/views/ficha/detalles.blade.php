@@ -40,5 +40,16 @@ Ficha de {{Session::get('nombremascota')}}
             </div>
         </div>    
     </div>
+     <div class="panel-body">
+        <div class="col-lg-12">         
+            <p><button type="Submit" onclick="abrirVentana('{{'reportes'.$id}}')" class="btn btn-primary btn-lg">Ver en PDF</button></p>
+        </div> 
+    </div>
 </div>
+
+<script>
+function abrirVentana(url) {
+    window.open(url, "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=600, height=800");
+}
+</script>
 @endsection

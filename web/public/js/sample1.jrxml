@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="578900e3-0c5e-4102-8e31-dc6c573ab805">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_atencion" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select atenciones.descripcion, atenciones.peso, atenciones.fecha, mascotas.nombre, propietarios.apellidos, propietarios.nombres, profesionales.nombres as nombre_p from atenciones inner join mascotas on atenciones.mascota_id = mascotas.id  inner join propietarios on mascotas.propietario_id = propietarios.id inner join profesionales on atenciones.profesional_id = profesionales.id  and  atenciones.id = $P{id_atencion}]]>
+	</queryString>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="peso" class="java.lang.Float"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="nombre_p" class="java.lang.String"/>
+	<variable name="total" class="java.lang.Integer" calculation="Sum"/>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="181" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="67" width="555" height="1" uuid="a00332d1-c789-4556-aefb-0495752995ac"/>
+			</line>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="13" y="10" width="100" height="20" uuid="b800fb54-f9e9-45d3-aa58-83be22f288da"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="33" y="30" width="270" height="37" uuid="e04e3656-c588-4980-b155-85e0748afe52"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte de Atención]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="168" width="555" height="2" uuid="3a40932f-d9d4-41e3-ad37-556b45e52141"/>
+			</line>
+			<staticText>
+				<reportElement x="13" y="79" width="116" height="20" uuid="4653cf6c-3937-4a0d-acdd-009c3416a18f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre de la mascota: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="109" width="116" height="20" uuid="b9a2d356-b610-43b7-835d-63e3c732d96f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre del propietario:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="79" width="30" height="20" uuid="3f21d119-dfb5-4a8f-bd88-5c2120e34dbb"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="109" width="99" height="20" uuid="de11c864-a8ec-476d-bcf0-796935f8e676"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de atención:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="148" width="77" height="20" uuid="ab0d8d87-d1d5-4f30-9d12-1972f1521783"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Atendido por:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="129" y="79" width="100" height="20" uuid="67f9cb02-d8ba-4a2a-a206-761623c71419"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="109" width="70" height="20" uuid="c8cb24b6-55f2-4ec3-8871-1b047ce0741e"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="199" y="109" width="62" height="20" uuid="3f37bba5-dde3-4e5f-8fbb-71955a49b55c"/>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement x="447" y="109" width="57" height="20" uuid="69912ca3-f051-4ddf-b0ac-df3de16b9aa5"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="378" y="79" width="45" height="20" uuid="fc111c27-af9a-4df0-bcb5-d3e08795fa5c"/>
+				<textFieldExpression><![CDATA[$F{peso}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="320" y="10" width="200" height="49" uuid="1fe14533-3c5a-4da8-b0a8-6814edcd0b57"/>
+				<imageExpression><![CDATA["./logo.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="90" y="150" width="430" height="20" uuid="8e0f9a1f-9da7-4c79-93f5-f5973a1d7ed0"/>
+				<textFieldExpression><![CDATA[$F{nombre_p}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="437" y="79" width="30" height="20" uuid="52e86920-b356-4a5b-9b45-d73d37355298"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kg.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="100">
+			<textField>
+				<reportElement x="0" y="46" width="555" height="54" uuid="1ff5b6f4-542d-4159-b627-30faae75d86b"/>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="12" width="217" height="23" uuid="3dc85c40-77f8-4f1e-aa13-6ec36ea5395e"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Detalles de la atención:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>

@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('titulo')
-Agenda diaria
+Agenda Semanal Veterinaria
 @endsection
 
 @section('cabecera')

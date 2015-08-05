@@ -99,6 +99,7 @@ Route::get('ficha/verFicha{id}', array('as' => 'verFicha', function($id)
  
 Session::put('nombremascota', $mascota->nombre);
 
+
     $profesionales = Profesional::orderBy('nombres', 'asc')->get()->lists('nombres','id');
     $combobox2 = array(0 => "Seleccione un profesional ") + $profesionales;
     $selected2 = array();
@@ -132,7 +133,7 @@ Route::get('ficha/verAtencion{id}', array('as' => 'verAtencion', function($id)
                  'descripcion'     => $atencion->descripcion,
                  'fecha_atencion'  => $atencion->fecha,
                  'peso'            => $atencion->peso,
-                 'descripcion'     => $atencion->descripcion
+                 'id'              => $atencion->id
           
                );
  
@@ -301,3 +302,21 @@ Route::get('agenda/agendaVeterinaria', array('as' => 'agendaVeterinaria','uses' 
 
 //-------------------------FIN DEL MÓDULO DE AGENDAMIENTO DE HORAS----------------------------------------------
 
+//------------------MÓDULO DE REPORTES------------------------------------------------------------------------
+
+Route::get('/ficha/reportes{id}', array('before' => 'auth','as' => 'buscarProfesionalMantenedor', function($id)
+{
+    $xml =  simplexml_load_file(URL::asset('js/sample1.jrxml'));
+
+
+$PHPJasperXML = new PHPJasperXML();
+//$PHPJasperXML->debugsql=true;
+//$parametro=$_GET['id'];
+$PHPJasperXML->arrayParameter=array("id_atencion"=>$id);
+$PHPJasperXML->xml_dismantle($xml);
+
+$PHPJasperXML->transferDBtoArray("sebastian.cl","fossey","fossey","fosseydb");
+$PHPJasperXML->outpage("I"); 
+}));
+
+//-------------------------FIN DEL MÓDULO DE REPORTES----------------------------------------------

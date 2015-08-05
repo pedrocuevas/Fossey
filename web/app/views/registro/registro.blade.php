@@ -199,42 +199,37 @@ Ingresar Nuevo Registro
 
  {{ Form::close(); }}
 
+<script>
+$(document).ready(function($) {
+    $('#especie').change(function() {
+        $.get("{{ url('razas')}}", {option: $(this).val()},
+        function(data) {
+            var razas = $('#razas');
+            razas.empty();
 
+            $.each(data, function(key, value) {
+                razas.append($("<option></option>").attr("value", key).text(value));
+            });
+        });
 
+    });
 
+});
 
-            <script>
+$(document).ready(function($) {
+        $.get("{{ url('razas')}}", {option: $('#especie').val()},
+        function(data) {
+            var razas = $('#razas');
+            razas.empty();
 
-                $(document).ready(function($) {
+            $.each(data, function(key, value) {
+                razas.append($("<option></option>").attr("value", key).text(value));
+            });
+        });
+});
+</script>
 
-                    $('#especie').change(function() {
-
-                        $.get("{{ url('razas')}}", {option: $(this).val()},
-                        function(data) {
-
-                            var razas = $('#razas');
-
-                            razas.empty();
-
-                            $.each(data, function(key, value) {
-
-                                razas
-
-                                        .append($("<option></option>")
-
-                                                .attr("value", key)
-
-                                                .text(value));
-                            });
-
-                        });
-
-                    });
-
-                });
-            </script>
-
-            @endsection
+@endsection
 
     
 
