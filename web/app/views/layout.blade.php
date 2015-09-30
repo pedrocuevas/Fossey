@@ -19,6 +19,7 @@
         <!-- SB Admin CSS - Include with every page -->
         {{ HTML::style('css/sb-admin.css') }}
         {{ HTML::script('js/jquery-1.10.2.js') }}
+        
 
         @yield('cabecera')
 

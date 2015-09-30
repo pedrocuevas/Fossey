@@ -74,5 +74,51 @@ class IngresoController extends BaseController {
     }
     
   }
+  
+    public function crearMascota() {
+
+        $data = Input::all(); 
+      
+        $reglas = array('nombre_mascota'    => 'alpha_spaces|required|min:4|max:40',
+                        'fecha_nac_mascota' => 'before:'.date("d-m-Y").'|required'
+                       );      
+        
+        $validador = Validator::make($data, $reglas);
+        
+        if($validador->fails()){
+           return Redirect::route('registro')->withErrors($validador)->withInput();
+        }
+        else if($data['especie'] == 0){
+           return Redirect::route('registro')->with('message','no_especie')->withInput(); 
+        }
+        else if(($data['razas'] == 0) || ($data['razas'] == '')){
+           return Redirect::route('registro')->with('message','no_raza')->withInput(); 
+        }
+        else{
+            
+        
+
+            $mascota = New Mascota();
+            $mascota->nombre = $data['nombre_mascota'];
+            $mascota->fecha_nacimiento = $data['fecha_nac_mascota'];
+            $mascota->propietario_id = $data['idpropietario'];
+            $mascota->genero = $data['sexo'];
+            $mascota->raza_id = $data['razas'];
+            $mascota->comentario = $data['comentario'];
+            $mascota->save();
+
+            //return Redirect::route('home')->with('message','registro_ok'); 
+             return Redirect::to('ficha/verFicha'.$mascota->id);
+
+    }
+    
+  }  
+  
+    public function borrarMascota(){
+        $idmascota = Route::input('idmascota');
+        $mascota = Mascota::find($idmascota);
+        $mascota->delete();
+        return Redirect::route('buscarPropietario')->with('message','ok_delete');
+       }   
 
 }

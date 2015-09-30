@@ -31,7 +31,8 @@ class PropietarioController extends BaseController {
             $mascotas = Propietario::find($propietario->id)->mascotas;  
             return View::make('busqueda.propietario.resultadoPropietario',array('mascotas' => $mascotas,
                               'nombrePropietario' => $propietario->nombres,
-                              'apellidoPropietario' => $propietario->apellidos));
+                              'apellidoPropietario' => $propietario->apellidos,
+                              'idpropietario' => $propietario->id));
           }
        }
        

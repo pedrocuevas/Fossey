@@ -22,6 +22,11 @@ Buscar Registros por Propietario
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <strong>Completado!</strong> Registro exitoso
         </div>
+    @elseif(Session::get('message') == 'ok_delete')
+       <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Completado!</strong> Registro borrado exitosamente
+        </div>
     @endif
 @endif
 

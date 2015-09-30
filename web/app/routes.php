@@ -66,7 +66,8 @@ Route::get('/registro/registro', array('before' => 'auth','as' => 'registro', fu
 }));
 
 Route::post('/ingreso', array('uses' => 'IngresoController@crearRegistro'));
-
+Route::post('/ingresoMascota', array('uses' => 'IngresoController@crearMascota'));
+Route::get('borrarMascota{idmascota}', array('before' => 'auth', 'uses' => 'IngresoController@borrarMascota'));
 Route::post('ficha/registroAtencion{id}', array('uses' => 'AtencionController@crearRegistro'));
 
 //----------------FIN DE MÓDULO DE REGISTRO DE PACIENTES--------------------------------------
