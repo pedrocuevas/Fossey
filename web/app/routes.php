@@ -44,7 +44,17 @@ Route::get('/home', array('before' => 'auth', 'as' => 'home', function()
     $medicamentos = Medicamento::all()->count();
     Session::put('totalmedicamentos',$medicamentos);
     
-	return View::make('home.home');
+    $hoy = date("Y-m-d");
+    
+    $horasvet = Agenda::agendasVet($hoy);
+     Session::put('totalvet',$horasvet);
+    $horaspelu = Agenda::agendasPelu($hoy);
+    Session::put('totalpelu',$horaspelu);
+    
+    $ultimos = Mascota::ultimosRegistros();
+            
+    
+	return View::make('home.home', array('ultimos' => $ultimos));
 }));
 
 //-------------FIN DE HOME--------------------------------------------------
