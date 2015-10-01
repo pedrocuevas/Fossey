@@ -48,7 +48,7 @@ Agregar Medicamento
                 <div class="form-group">
                     {{Form::label('nombre_generico', 'Nombre Genérico:')}}
                     {{Form::text('nombre_generico',null,array('class' => 'form-control', 'required' => 'required'))}}
-                    <p class="help-block">Ej: Amoxixilina</p>
+                    <p class="help-block">Ej: Amoxicilina</p>
                 </div>
             </div>
             <div class="col-lg-3">
